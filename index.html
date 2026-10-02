@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6650bf">
+<meta name="description" content="Eine werbefreie, liebevolle Lernwelt für Vorschulkinder. Mit Momo, Höranweisungen, Lernspielen und viel Bewegung.">
+<meta name="application-name" content="Kleine Schritte">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Kleine Schritte">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="icon" href="icons/icon-512.png" sizes="512x512">
+
+
+<style>
+:root{
+ --ink:#292647;--sub:#79748b;--plum:#6549bb;--plum2:#8764df;--bg:#f7f7fb;--line:#eae6f0;
+ --white:#fff;--green:#4a9a75;--peach:#ffccab;--purple-wash:#eae3ff;
+ --shadow:0 14px 45px rgba(55,46,96,.09);--bigshadow:0 23px 70px rgba(63,43,116,.15);
+ --font:'Trebuchet MS','Avenir Next','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}
+button:focus-visible,input:focus-visible{outline:4px solid #f3b34a;outline-offset:4px}
+button,svg{-webkit-tap-highlight-color:transparent}button{touch-action:manipulation}p{line-height:1.55}
+h1,h2,h3,p{margin:0}h1{font-weight:950;letter-spacing:-1.4px;line-height:1.1}h2{font-weight:950;letter-spacing:-.7px;line-height:1.2}h3{font-weight:900;line-height:1.25}
+.app-frame{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100svh;max-width:1640px;margin:0 auto}
+.sidebar{background:#fff;border-right:1px solid #eeebf4;min-height:100svh;padding:27px 20px 22px;position:sticky;top:0;align-self:start;height:100svh;display:flex;flex-direction:column;gap:23px}
+.brand{display:flex;align-items:center;gap:11px;text-align:left;border:0;padding:0 4px;background:none;color:var(--ink)}
+.brand-icon{width:47px;height:47px;background:#ebdfff;display:grid;place-items:center;border-radius:16px;box-shadow:inset 0 -5px #d6c4f5;font-size:26px}
+.brand-text strong{display:block;font-size:21px;letter-spacing:-.85px;line-height:1.07}.brand-text small{display:block;font-size:10px;color:#a18ba9;text-transform:uppercase;font-weight:900;letter-spacing:2px;margin-top:6px}
+.nav-label{margin:19px 12px 4px;color:#b5afc4;font-size:11px;letter-spacing:2px;font-weight:900;text-transform:uppercase}
+.nav-list{display:grid;gap:8px}.nav-link{width:100%;min-height:53px;display:flex;align-items:center;gap:13px;border:0;border-radius:16px;text-align:left;background:transparent;color:#777287;font-weight:850;padding:9px 13px;transition:.18s}
+.nav-link .nav-ico{display:grid;place-items:center;width:31px;height:31px;border-radius:11px;font-size:19px}.nav-link.selected{color:#6247ae;background:#f1ebff}.nav-link.selected .nav-ico{background:white}.nav-link:hover{background:#f6f2ff}
+.nav-bottom{margin-top:auto}.helper-note{background:#fff5dd;border:1px solid #f8e8bd;padding:18px;border-radius:19px}.helper-note strong{display:block;font-size:14px;margin-bottom:6px}.helper-note p{font-size:12px;color:#8b754f}.helper-note .flower{font-size:29px;display:block;margin-bottom:10px}.nav-legal{font-size:11px;line-height:1.6;text-align:center;color:#afaabc;margin-top:17px}
+.content{min-width:0;padding:28px clamp(24px,4.2vw,66px) 88px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:27px;min-height:48px}.breadcrumbs{font-weight:900;font-size:14px;color:#a5a0b2;letter-spacing:.1px}.breadcrumbs strong{color:#4a4562}.tool-actions{display:flex;align-items:center;gap:10px}
+.toolpill,.toolicon{min-height:42px;background:#fff;border:1px solid #eeecf3;border-radius:99px;display:flex;align-items:center;justify-content:center;gap:8px;padding:7px 14px;color:#665c7e;font-size:14px;font-weight:900;white-space:nowrap}.toolpill.star{background:#fff6e7;color:#a36f29;border-color:#f9e6bb}.toolicon{width:44px;padding:0;font-size:19px;transition:transform .15s}.toolicon:hover{transform:translateY(-2px)}
+.user-dot{background:#eee6ff;width:27px;height:27px;border-radius:50%;display:grid;place-items:center;font-size:16px}
+.eyebrow{color:#866aca;letter-spacing:1.7px;text-transform:uppercase;font-size:11px;font-weight:950;margin-bottom:12px}
+.btn{border:0;background:#694dc0;color:white;min-height:51px;border-radius:16px;padding:12px 23px;font-weight:950;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 7px 0 #5137a0;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 9px 0 #5137a0}.btn:active{transform:translateY(4px);box-shadow:0 3px 0 #5137a0}.btn:disabled{box-shadow:none;transform:none}
+.btn.white{background:#fff;color:#5e4992;box-shadow:0 6px 0 rgba(89,64,132,.1)}.btn.white:hover{box-shadow:0 8px 0 rgba(89,64,132,.1)}
+.btn.outline{background:#fff;color:#5c5271;box-shadow:0 5px 0 #e4deef;border:1px solid #e4deef}.btn.green{background:#4caa84;box-shadow:0 7px 0 #2a8661}.btn.green:hover{box-shadow:0 9px 0 #2a8661}
+.btn.small{font-size:13px;min-height:42px;padding:10px 17px;box-shadow:0 4px 0 #5137a0}.btn.small.outline{box-shadow:0 4px 0 #e4deef}.btn.block{width:100%}
+.link{border:0;background:none;color:#7350bc;font-weight:900;cursor:pointer;padding:8px 0}.link:hover{text-decoration:underline}.muted{color:var(--sub)}
+.hero{position:relative;border-radius:36px;background:linear-gradient(113deg,#e5e2ff 0%,#f7eaf3 56%,#ffebd9 100%);min-height:334px;padding:40px 42% 37px 43px;overflow:hidden;box-shadow:0 14px 35px rgba(87,65,143,.06);isolation:isolate}
+.hero::before{content:'';position:absolute;right:-60px;top:-185px;width:470px;height:470px;border-radius:50%;background:#ffffff4f;z-index:-1}.hero::after{content:'';position:absolute;left:27%;bottom:-230px;width:430px;height:330px;border-radius:50%;background:#d5d5f7a0;z-index:-1}
+.hero-badge{display:inline-flex;gap:7px;align-items:center;background:#ffffffb9;border:1px solid #fff;color:#8064a6;border-radius:99px;font-size:11px;font-weight:950;letter-spacing:.75px;text-transform:uppercase;padding:8px 13px;margin-bottom:18px}
+.hero h1{font-size:clamp(32px,3.2vw,52px);max-width:510px;letter-spacing:-1.9px}.hero h1 em{font-style:normal;color:#7652c6}.hero p{color:#777089;font-size:15px;margin:15px 0 24px;max-width:420px;font-weight:600}
+.hero-art{position:absolute;right:2%;bottom:-9px;width:39%;max-width:400px;min-width:230px;pointer-events:none}
+.hero-art .cloud-orbit{animation:float 4.5s ease-in-out infinite}.orbit-star{animation:twinkle 2s ease-in-out infinite;transform-origin:center}.sky-star{position:absolute;color:#fff;font-size:26px;animation:twinkle 2.8s ease-in-out infinite}.sky-star.a{right:8%;top:12%}.sky-star.b{right:39%;top:22%;animation-delay:1s}.sky-star.c{right:30%;bottom:9%;color:#ffcb66;animation-delay:.4s}
+.hero-art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 15px 12px rgba(97,70,145,.12))}
+.momo-svg .body-cloud{animation:momo-bob 4s ease-in-out infinite;transform-origin:50% 52%}.momo-svg .arm-right{animation:wave 1.5s ease-in-out infinite;transform-origin:73% 53%}.momo-svg .eye-l,.momo-svg .eye-r{transform-origin:center;animation:blink 5.5s infinite}.momo-svg .blush{opacity:.9}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+@keyframes momo-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes wave{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-12deg)}}
+@keyframes blink{0%,44%,47%,100%{transform:scaleY(1)}45%,46%{transform:scaleY(.12)}}
+@keyframes twinkle{0%,100%{transform:scale(.9);opacity:.5}50%{transform:scale(1.16);opacity:1}}
+@keyframes bop{0%{transform:scale(.94)}55%{transform:scale(1.035)}100%{transform:scale(1)}}
+@keyframes hop{0%{transform:translateY(0)}25%{transform:translateY(-10px)}50%{transform:translateY(0)}75%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+@keyframes shake{10%,90%{transform:translateX(-1px)}20%,80%{transform:translateX(3px)}30%,50%,70%{transform:translateX(-5px)}40%,60%{transform:translateX(5px)}}
+@keyframes enter{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+.pop{animation:bop .35s both}.hop{animation:hop .75s both}.shake{animation:shake .42s both}
+.section-top{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:33px 0 16px}.section-top h2{font-size:25px}.section-top p{font-size:13px;margin-top:6px;color:var(--sub)}
+.missions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.mission-card{position:relative;border:1px solid #eae7f1;border-radius:25px;min-height:204px;background:#fff;padding:21px;text-align:left;display:flex;flex-direction:column;gap:10px;box-shadow:0 7px 22px rgba(40,35,80,.035);transition:transform .18s,box-shadow .18s}.mission-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}.mission-card.done{background:#f3fbf6;border-color:#c9ebdb}.mission-top{display:flex;justify-content:space-between;align-items:start}.mission-icon{width:58px;height:58px;border-radius:19px;display:grid;place-items:center;font-size:31px}.mission-counter{font-size:10px;color:#a19bad;font-weight:950;letter-spacing:1.5px}.mission-card h3{font-size:18px;line-height:1.22;max-width:250px}.mission-card p{font-size:12px;color:var(--sub);margin:0}.mission-footer{margin-top:auto;font-size:12px;font-weight:950;color:#7754c2;display:flex;align-items:center;justify-content:space-between}.check{display:inline-grid;width:28px;height:28px;border-radius:50%;place-items:center;background:#d1f3dd;color:#31916c;font-size:19px}
+.day-progress{margin-top:15px;background:#fff;border:1px solid #eeebf2;border-radius:22px;padding:20px 24px;display:flex;align-items:center;gap:19px}.round-progress{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:#efe9ff;color:#6e4ebe;font-weight:950;flex:0 0 60px;font-size:20px}.day-content{flex:1}.day-content strong{font-size:15px}.day-content p{color:var(--sub);font-size:12px;margin:3px 0 10px}.track{height:10px;border-radius:99px;background:#efeafd;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#9873ee,#6c4ac6);border-radius:99px;transition:width .4s}
+.world-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.world-card{position:relative;overflow:hidden;border:1px solid #ece8f1;background:#fff;border-radius:26px;padding:0;text-align:left;min-height:256px;box-shadow:0 5px 19px #392c6d09;transition:transform .2s,box-shadow .2s}.world-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}.world-image{position:relative;height:133px;display:grid;place-items:center;overflow:hidden}.world-image:before{content:'';position:absolute;width:210px;height:140px;border-radius:50%;background:#ffffff69;top:-75px;left:-60px}.world-image:after{content:'';position:absolute;width:200px;height:130px;border-radius:50%;background:#ffffff66;bottom:-97px;right:-57px}.world-emoji{font-size:74px;line-height:1;filter:drop-shadow(0 9px 3px #0000000d);z-index:1;animation:float 5.5s ease-in-out infinite}.world-card:nth-child(2) .world-emoji{animation-delay:.6s}.world-card:nth-child(3) .world-emoji{animation-delay:1s}.world-card:nth-child(5) .world-emoji{animation-delay:.5s}.world-spark{position:absolute;font-size:22px;z-index:1}.world-spark.one{top:20px;right:25px}.world-spark.two{bottom:20px;left:24px}.world-info{padding:17px 20px 19px}.world-info h3{font-size:19px}.world-info p{font-size:12px;color:var(--sub);margin:5px 0 11px;min-height:33px}.world-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#9c95ab;font-size:11px;font-weight:900}.world-meta span:last-child{background:#f5f0ff;color:#7050be;border-radius:99px;padding:5px 8px}.world-card.wide{grid-column:span 1}
+.below-row{display:grid;grid-template-columns:1.2fr .8fr;gap:15px;margin-top:17px}.activity-card{background:#eaf6ed;border-radius:25px;display:flex;align-items:center;gap:18px;padding:25px;min-height:137px}.activity-card .activity-ico{width:65px;height:65px;display:grid;place-items:center;background:white;border-radius:20px;flex:0 0 65px;font-size:38px}.activity-card h3{font-size:18px}.activity-card p{color:#6c8a73;font-size:13px;margin:7px 0}.activity-card .link{font-size:13px;color:#3d8669}.nubi-tip{background:#fff;border:1px solid #ece8f2;border-radius:25px;padding:22px;min-height:137px;display:flex;gap:15px;align-items:center}.nubi-tip .nubi-head{font-size:43px;display:block}.nubi-tip h3{font-size:16px}.nubi-tip p{font-size:12px;color:var(--sub);margin-top:7px}
+.page-head{margin-bottom:24px}.page-head h1{font-size:clamp(31px,3.3vw,44px)}.page-head p{font-size:15px;color:var(--sub);margin-top:9px;max-width:800px}
+.world-intro{border-radius:31px;padding:29px;min-height:186px;display:flex;justify-content:space-between;align-items:center;gap:18px;overflow:hidden;position:relative}.world-intro:before{content:'';width:330px;height:330px;border-radius:50%;position:absolute;right:-80px;top:-160px;background:#ffffff80}.world-intro h1{font-size:clamp(29px,3vw,45px);position:relative}.world-intro p{max-width:560px;font-size:15px;color:#5d5374;margin-top:10px;position:relative}.world-intro-icon{font-size:105px;filter:drop-shadow(0 10px 4px #5a487520);z-index:1;animation:float 4.3s ease-in-out infinite}
+.topic-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.topic-tag{border:1px solid #eee6f3;background:#fff;border-radius:99px;padding:9px 14px;font-size:12px;font-weight:900;color:#776d8f}.topic-tag.active{background:#7050c0;color:#fff;border-color:#7050c0}
+.task-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:15px}.task-card{display:flex;gap:14px;align-items:center;text-align:left;background:#fff;border:1px solid #e9e6ee;border-radius:21px;min-height:104px;padding:16px;transition:transform .15s,box-shadow .15s}.task-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.task-ico{width:58px;height:58px;display:grid;place-items:center;background:#f4f0ff;border-radius:17px;flex:0 0 58px;font-size:30px}.task-card h3{font-size:15px;line-height:1.3}.task-card p{font-size:12px;color:#9a92a7;margin-top:6px}.task-card .arrow{margin-left:auto;font-size:19px;color:#9b85d0}.level{background:#f7f1fc;color:#886fb5;font-weight:900;font-size:10px;padding:5px 9px;border-radius:99px;white-space:nowrap}
+.game-shell{max-width:880px;margin:0 auto}.game-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:17px}.back{display:inline-flex;align-items:center;gap:7px;border:0;background:#fff;color:#77698c;border-radius:99px;padding:12px 16px;font-size:13px;font-weight:950}.game-place{font-size:12px;font-weight:950;color:#74628a;background:#fff;border-radius:99px;padding:10px 16px}.game-card{position:relative;background:#fff;border:1px solid #eeeaf2;border-radius:34px;box-shadow:var(--bigshadow);overflow:hidden;padding:0 0 30px}.game-header{text-align:center;background:linear-gradient(155deg,#f2edff,#fff4ed);padding:29px 29px 25px;position:relative}.game-header .ribbon{color:#8769b6;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:950}.game-header h1{font-size:clamp(24px,3vw,38px);max-width:700px;margin:10px auto 18px;line-height:1.23;letter-spacing:-.8px}.soundbig{display:inline-flex;gap:9px;align-items:center;justify-content:center;background:#6f50c5;color:white;border:0;border-radius:99px;min-height:53px;padding:12px 21px;font-weight:950;font-size:14px;box-shadow:0 5px 0 #5236a0}.soundbig:hover{transform:translateY(-2px)}.game-buddy{position:absolute;left:24px;bottom:-25px;width:74px;filter:drop-shadow(0 6px 6px #66529b2b);animation:float 4s infinite}.game-buddy svg{width:100%}.game-buddy .bubble{display:none}.game-art{display:grid;place-items:center;min-height:160px;padding:28px 18px 10px;margin:0 auto;max-width:730px}.big-art{font-size:clamp(64px,10vw,111px);line-height:1.15;filter:drop-shadow(0 7px 3px #655a6910)}.art-tiles{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;align-items:center;max-width:610px;min-height:90px}.art-tiles .single{font-size:40px;line-height:1.3}.art-tiles.large .single{font-size:56px}.art-tiles.numerous .single{font-size:30px}.compare-art{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;width:100%}.compare-panel{background:#f9f6ff;border:2px solid #f1ecfc;border-radius:21px;min-height:125px;display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap;padding:17px}.compare-panel .single{font-size:28px}.compare-middle{font-size:26px;font-weight:950;color:#ab9cba}.story-card{background:#fcf8e9;border:1px solid #f0dfae;border-radius:19px;padding:15px 20px;margin:10px 30px 5px;font-size:14px;color:#765d3a;text-align:center}.story-card .story-btn{border:0;background:transparent;color:#8a6b2d;font-size:13px;font-weight:950;padding:4px}.story-text{padding:10px 10px 4px;line-height:1.7}.game-body{padding:0 30px}.answer-label{text-align:center;color:#aaa1b3;font-weight:950;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin:18px 0 14px}.answer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.answer{border:3px solid #eeeaf5;background:#faf8ff;min-height:118px;border-radius:23px;padding:14px 16px;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;flex-direction:column;color:var(--ink);font-weight:950;font-size:18px;transition:transform .16s,border-color .16s,background .16s;overflow-wrap:anywhere}.answer:hover{transform:translateY(-3px);border-color:#d3c4f5}.answer:active{transform:scale(.97)}.answer .answer-art{font-size:clamp(30px,4vw,52px);line-height:1.15}.answer .answer-caption{font-size:clamp(14px,1.8vw,18px);line-height:1.3}.answer.correct{border-color:#60be8c;background:#ecfff3;animation:bop .34s}.answer.wrong{border-color:#ffb6a0;background:#fff4ee;animation:shake .42s}.answer.done{opacity:.68}.answer.wordy{min-height:105px}.answer.wordy .answer-art{display:none}.answer.wordy .answer-caption{font-size:17px}.answer .small-sound{font-size:13px;font-weight:850;color:#8879a3}.answer:disabled{cursor:default;opacity:1}.game-hint{color:#978b9f;font-size:13px;margin:17px 0 0;text-align:center}.game-feedback{margin-top:18px}.feedback{background:#fff7e7;border:2px solid #ffe0ad;border-radius:18px;padding:17px;text-align:center;color:#8e6c35;font-size:14px;font-weight:850}.feedback.success{background:#ecfff4;border-color:#bceacb;color:#2d7955}.feedback h3{font-size:23px;margin:5px 0;color:#2b7954}.feedback .success-emoji{font-size:39px;display:block;animation:hop .7s}.game-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:21px}
+.memory-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;max-width:530px;margin:24px auto 8px}.memory-tile{aspect-ratio:1;background:#e7defd;border:3px solid #d7caf8;border-radius:18px;color:#7254ad;font-size:clamp(22px,4vw,46px);font-weight:950;display:grid;place-items:center;transition:background .18s,transform .25s;border-bottom-width:6px}.memory-tile:hover{transform:scale(1.04)}.memory-tile.flipped{background:white;transform:rotateY(180deg);border-color:#d9cdfa}.memory-tile.flipped .memory-front{transform:rotateY(180deg)}.memory-tile.matched{background:#ddf8e9;border-color:#a8dfbf;box-shadow:inset 0 0 0 3px #ffffff87}.memory-counter{color:#8f849c;text-align:center;margin:18px 0 2px;font-size:14px;font-weight:850}
+.sequence-slots{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px auto}.seq-slot{width:75px;height:75px;border:3px dashed #d8ccef;border-radius:18px;background:#f8f4ff;display:grid;place-items:center;font-size:35px;color:#7860ac;font-weight:950}.seq-slot.filled{border:3px solid #b2ddb8;background:#e6faed;color:#347a57}.sequence-options{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;margin:24px 0}.seq-option{width:100px;height:102px;border:3px solid #e6dcfa;background:#eee6ff;border-radius:23px;font-size:49px;font-weight:950;color:#7052b2}.seq-option:disabled{visibility:hidden}.seq-option:hover{transform:translateY(-4px)}
+.select-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;max-width:580px;margin:20px auto}.select-option{min-height:105px;border:3px solid #efe6fb;background:#fbf8ff;border-radius:21px;font-size:54px;position:relative}.select-option.chosen{background:#e7f9f0;border-color:#7ccc9c}.select-option.chosen:after{content:'✓';position:absolute;top:5px;right:12px;color:#348960;font-size:24px}.select-option.bad{border-color:#f2a499;background:#fff2ee}.select-hint{text-align:center;font-size:13px;color:#988da8;margin:9px 0}
+.trace-area{margin:21px 0 10px;position:relative;background:#f7f3ff;border:3px dashed #d7cbef;border-radius:27px;padding:5px;overflow:hidden}.trace-canvas{display:block;width:100%;height:325px;touch-action:none;cursor:crosshair;user-select:none}.trace-caption{text-align:center;color:#8e83a1;font-size:13px;margin:9px 0}.trace-footer{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.offline-visual{font-size:115px;text-align:center;margin:15px auto 13px;animation:float 4s infinite}.offline-panel{background:#eaf8e9;border-radius:22px;padding:23px;text-align:center;margin:20px auto;color:#477a52;max-width:610px}.offline-panel strong{font-size:19px;display:block;margin-bottom:7px}.offline-panel p{font-size:14px}
+.achievements{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.badge-card{background:#fff;border:1px solid #ebe8f0;border-radius:26px;text-align:center;padding:24px 15px;min-height:185px}.badge-card .badge-icon{font-size:52px;display:block;margin-bottom:13px;filter:drop-shadow(0 6px 3px #5f387816)}.badge-card.locked{background:#f3f1f6;filter:grayscale(.65);opacity:.7}.badge-card strong{display:block;font-size:17px}.badge-card p{margin-top:8px;color:var(--sub);font-size:12px}.prize-hero{display:flex;align-items:center;gap:22px;background:linear-gradient(115deg,#ffedd5,#f2e8ff);border-radius:29px;padding:29px;margin:22px 0 29px}.prize-hero .big-prize{font-size:72px;line-height:1}.prize-hero h2{font-size:30px;margin-bottom:6px}.prize-hero p{font-size:14px;color:#7b6e89}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.stat{background:#fff;border-radius:22px;padding:22px;border:1px solid #ece8f1}.stat strong{display:block;font-size:35px;color:#7252bb}.stat small{display:block;color:#8a8395;font-size:13px;font-weight:800;margin-top:5px}.parent-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:17px}.panel{background:#fff;border-radius:25px;border:1px solid #ece8f1;padding:26px}.panel h2{font-size:23px;margin-bottom:10px}.panel p{font-size:13px;color:#8c8596}.activity-meter{display:grid;gap:14px;margin-top:23px}.meter-row{display:grid;gap:8px}.meter-row span{font-size:13px;font-weight:900;display:flex;justify-content:space-between}.meter-row small{font-size:11px;color:#9a91a2}.meter-track{height:9px;background:#eeeaf7;border-radius:20px;overflow:hidden}.meter-track div{height:100%;border-radius:20px}.field-label{display:block;font-size:13px;font-weight:950;margin:15px 0 8px}.field{width:100%;border:2px solid #eee7f7;background:#fdfbff;padding:13px 15px;border-radius:13px;min-height:49px;color:var(--ink)}.avatar-row{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0 20px}.avatar-choice{border:3px solid #e9e3f6;border-radius:16px;background:#fff;font-size:29px;min-width:57px;min-height:57px}.avatar-choice.selected{border-color:#8d6de0;background:#f1ecff}.privacy{margin-top:18px;background:#eef8f0;border-radius:15px;padding:16px;font-size:12px;line-height:1.6;color:#5a8064}.parent-tip{background:#fff7e3;border-radius:21px;padding:22px;margin:20px 0 0}.parent-tip h3{margin-bottom:7px}.parent-tip p{font-size:13px;color:#786a48}.danger{background:#fff4f2;color:#ac5351;border:1px solid #f9d2c9;border-radius:14px;padding:12px 16px;font-weight:900;cursor:pointer;margin-top:18px}.modal-shade{position:fixed;inset:0;z-index:100;background:#201832a0;display:grid;place-items:center;padding:20px}.dialog{background:#fff;border-radius:26px;max-width:470px;width:100%;padding:27px;box-shadow:0 25px 100px #0004}.dialog h2{font-size:25px}.dialog p{font-size:14px;color:#756b85;margin:12px 0 20px}.dialog .buttons{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+#toast{position:fixed;z-index:130;bottom:21px;left:50%;transform:translateX(-50%);pointer-events:none}.toast-msg{background:#2d2352;color:white;font-size:14px;font-weight:900;padding:13px 21px;border-radius:99px;box-shadow:0 10px 25px #20143c55;white-space:normal;text-align:center;max-width:min(90vw,600px)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}.confetti-piece{position:absolute;top:-20px;width:12px;height:22px;border-radius:4px;animation:confetti-fall 1.8s ease-in forwards;transform:rotate(var(--rot))}@keyframes confetti-fall{0%{transform:translate(0,-20px) rotate(0);opacity:1}100%{transform:translate(var(--drift),105vh) rotate(750deg);opacity:0}}
+.mobile-nav{display:none}
+@media(min-width:1260px){.world-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.world-image{height:125px}.world-card{min-height:247px}}
+@media(max-width:1120px){.app-frame{grid-template-columns:214px minmax(0,1fr)}.sidebar{padding:22px 12px}.brand-text strong{font-size:18px}.content{padding:25px 24px 100px}.hero{padding:33px 38% 31px 32px}.world-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.missions{gap:9px}.mission-card{padding:16px}.mission-card h3{font-size:16px}.below-row{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.app-frame{display:block}.sidebar{display:none}.content{padding:17px 16px 106px}.toolbar{margin-bottom:16px}.breadcrumbs{font-size:12px}.tool-actions{gap:6px}.toolpill{font-size:12px;padding:6px 9px;min-height:39px}.toolicon{width:38px;min-height:38px}.user-dot{width:24px;height:24px}.toolbar .parent-short{display:none}.hero{border-radius:27px;padding:26px 33% 27px 24px;min-height:284px}.hero h1{font-size:clamp(29px,6.3vw,45px)}.hero p{font-size:12px;line-height:1.55;margin:11px 0 16px}.hero-badge{font-size:9px;padding:6px 10px;margin-bottom:12px}.hero-art{width:45%;min-width:170px;right:-25px;bottom:-7px}.hero .btn{min-height:46px;font-size:12px;padding:11px 13px;box-shadow:0 5px 0 #5137a0}.section-top{margin-top:25px}.section-top h2{font-size:22px}.section-top p{font-size:12px}.missions{grid-template-columns:1fr;gap:10px}.mission-card{min-height:104px;display:grid;grid-template-columns:54px 1fr 30px;gap:4px 13px;padding:13px 16px;align-items:center}.mission-top{grid-row:1/3;grid-column:1;display:block}.mission-index{display:none}.mission-icon{width:51px;height:51px;font-size:27px}.mission-card h3{grid-column:2;grid-row:1;font-size:16px;align-self:end}.mission-card p{grid-column:2;grid-row:2;font-size:11px;align-self:start}.mission-footer{grid-column:3;grid-row:1/3;display:flex;flex-direction:column;gap:10px;font-size:20px}.mission-footer span:first-child{font-size:0}.mission-footer span:first-child:after{content:'➜';font-size:20px}.mission-card.done .mission-footer span:first-child:after{content:'✓'}.day-progress{padding:15px;gap:14px}.world-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.world-card{min-height:216px;border-radius:22px}.world-image{height:106px}.world-emoji{font-size:61px}.world-spark.one{right:13px;top:11px}.world-info{padding:15px 14px}.world-info h3{font-size:16px}.world-info p{font-size:11px;min-height:36px}.world-meta{font-size:10px}.below-row{grid-template-columns:1fr}.activity-card,.nubi-tip{min-height:120px;padding:17px}.page-head h1{font-size:31px}.world-intro{padding:22px;min-height:140px}.world-intro-icon{font-size:70px}.task-grid{grid-template-columns:1fr}.game-card{border-radius:25px;padding-bottom:20px}.game-header{padding:22px 15px 18px}.game-header h1{font-size:26px}.game-buddy{left:13px;bottom:-22px;width:58px}.game-art{min-height:120px;padding:22px 12px 8px}.big-art{font-size:75px}.art-tiles .single{font-size:34px}.art-tiles.numerous .single{font-size:25px}.compare-art{gap:7px}.compare-panel{min-height:90px;padding:10px 4px}.compare-panel .single{font-size:20px}.compare-middle{font-size:15px}.game-body{padding:0 14px}.answer-grid{gap:9px}.answer{min-height:106px;border-radius:19px;padding:12px 9px}.answer .answer-art{font-size:38px}.answer .answer-caption{font-size:15px}.answer.wordy .answer-caption{font-size:14px}.story-card{margin:7px 16px}.trace-canvas{height:270px}.memory-grid{gap:8px}.memory-tile{border-radius:13px}.game-nav{margin-bottom:12px}.game-place{font-size:11px;padding:10px}.stats{gap:7px}.stat{padding:15px}.stat strong{font-size:29px}.stat small{font-size:11px}.parent-grid{grid-template-columns:1fr}.achievements{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.badge-card{min-height:156px;padding:16px 12px}.badge-card .badge-icon{font-size:43px}.badge-card strong{font-size:14px}.badge-card p{font-size:11px}.mobile-nav{position:fixed;display:grid;grid-template-columns:repeat(4,1fr);bottom:0;left:0;right:0;z-index:45;background:#ffffffed;box-shadow:0 -9px 28px #39275613;backdrop-filter:blur(18px);padding:8px 7px max(9px,env(safe-area-inset-bottom));border-top:1px solid #eae5f1}.mobile-tab{border:0;background:transparent;border-radius:14px;padding:6px 2px;display:grid;justify-items:center;gap:4px;font-size:10px;font-weight:950;color:#8e859f}.mobile-tab .tabicon{font-size:24px}.mobile-tab.active{color:#6c50bd;background:#f3ecff}}
+@media(max-width:390px){.content{padding:14px 12px 105px}.hero{padding:21px 31% 22px 18px;min-height:260px}.hero h1{font-size:28px}.hero p{font-size:11px}.hero-art{right:-42px;min-width:155px}.world-grid{gap:9px}.world-card{min-height:212px}.world-info{padding:12px}.world-info h3{font-size:15px}.game-header h1{font-size:23px}.answer .answer-caption{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.answer-wrap{position:relative;display:flex;min-width:0}.answer-wrap .answer{width:100%;padding-bottom:39px}.option-audio{position:absolute;right:9px;bottom:8px;min-width:39px;min-height:32px;border:0;background:#eae1fb;color:#7659b2;border-radius:99px;font-size:17px;font-weight:900;display:grid;place-items:center;box-shadow:0 2px 0 #d4c5f3}.option-audio:hover{background:#ddcafa}.option-audio:disabled{opacity:.5}
+/* The mission index and duplicate arrow are unnecessary on narrow screens. */
+@media(max-width:760px){
+ .mission-counter{display:none}
+ .mission-footer span:first-child{display:none}
+ .mission-footer span:first-child:after{content:none}
+ .mission-card{grid-template-columns:54px minmax(0,1fr) 27px}
+ .mission-footer{justify-content:center}
+ .hero-art{right:-9px;width:42%;min-width:144px}
+}
+@media(max-width:390px){.hero-art{right:-8px;min-width:132px;width:40%}}
+/* Momo reacts to spoken instructions and successful adventures. */
+@keyframes talking{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+@keyframes cheering{0%{transform:translateY(0) rotate(0)}35%{transform:translateY(-8px) rotate(-4deg)}70%{transform:translateY(-4px) rotate(4deg)}100%{transform:translateY(0) rotate(0)}}
+.momo-talking .momo-svg .body-cloud{animation:talking .4s ease-in-out infinite}
+.momo-talking .momo-svg .momo-mouth{stroke-width:11;stroke-linecap:round}
+.game-buddy .momo-svg.happy{animation:cheering .9s ease-in-out 2}
+.game-buddy .momo-svg.cheer{animation:float 2s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.momo-talking .momo-svg .body-cloud,.game-buddy .momo-svg.happy,.game-buddy .momo-svg.cheer{animation:none!important}}
+
+</style>
+<title>Kleine Schritte · Deine bunte Lernwelt</title>
+
+
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="confetti" aria-hidden="true"></div>
+<script>
+/* Kleine Schritte – eigener, lokal gespeicherter Vorschul-Aufgabenkatalog.
+   Aufgaben sind Lernanregungen, keine diagnostische Schulreifeprüfung. */
+'use strict';
+const WORLDS = [
+  {id:'wort',name:'Wortwald',short:'Wörter & Laute',desc:'Reime, Silben, Buchstaben und Hörgeschichten',icon:'🌳',color:'#FDE8D4',accent:'#C46639',area:'Worte entdecken',topics:['Anlaute','Reime','Silben','Buchstaben','Hörverstehen']},
+  {id:'zahl',name:'Zahlenmeer',short:'Zahlen & Mengen',desc:'Zählen, vergleichen, rechnen und ordnen',icon:'🐠',color:'#D8F0FD',accent:'#227DB2',area:'Zahlen entdecken',topics:['Mengen','Rechnen','Zahlenfolgen','Formen']},
+  {id:'knobel',name:'Knobelberg',short:'Denken & Merken',desc:'Muster, Merkspiele, Sortieren und Orientierung',icon:'🧩',color:'#E5E0FF',accent:'#7556B4',area:'Clever kombinieren',topics:['Muster','Unterschiede','Memory','Sortieren','Raumlage']},
+  {id:'stift',name:'Stiftwerkstatt',short:'Malen & Schreiben',desc:'Linien nachfahren, Formen zeichnen, Hände üben',icon:'✏️',color:'#FFE1E9',accent:'#BB587D',area:'Motorik erproben',topics:['Schwungübungen','Formen','Buchstaben','Ziffern']},
+  {id:'wissen',name:'Entdeckerinsel',short:'Die Welt entdecken',desc:'Jahreszeiten, Farben, Zeit, Verkehr & Alltag',icon:'🪁',color:'#FFF0C8',accent:'#AA772D',area:'Die Welt verstehen',topics:['Farben','Jahreszeiten','Wochentage','Natur','Sicherheit']},
+  {id:'mut',name:'Miteinanderland',short:'Gefühle & Schule',desc:'Freundschaft, Hilfe, Gefühle, selbstständig sein',icon:'💗',color:'#FFDDE2',accent:'#C85C72',area:'Gemeinsam stark',topics:['Gefühle','Freundschaft','Selbstständigkeit']},
+  {id:'bewegung',name:'Bewegungswiese',short:'Weg vom Bildschirm',desc:'Toben, balancieren, Musik und gemeinsam spielen',icon:'🌻',color:'#DDF4D1',accent:'#4E9449',area:'In Bewegung kommen',topics:['Bewegen','Alltagsspiele','Kreativsein','Musik & Rhythmus']}
+];
+const TASKS = [];
+function add(task){if(TASKS.some(t=>t.id===task.id))throw Error('Doppelte Aufgaben-ID: '+task.id);TASKS.push(task);}
+const o=(art,label=art,say=label)=>({art:String(art),label:String(label),say:String(say)});
+function q(id,world,topic,prompt,art,opts,answer,level=1,hint='',extra={}){
+  const options=opts.map(v=>typeof v==='string'?o(v,v):v);
+  const ix=options.findIndex(v=>v.label===answer);
+  if(ix<0 || options.filter(v=>v.label===answer).length!==1)throw Error('Antwort inkonsistent: '+id);
+  add({id,world,topic,type:'choice',prompt,art,options,answer:ix,level,hint,...extra});
+}
+function seq(id,world,topic,prompt,items,order,level=1){add({id,world,topic,type:'sequence',prompt,items:items.map(String),order:order.map(String),level});}
+function group(id,world,topic,prompt,items,selected,level=1){add({id,world,topic,type:'select',prompt,items:items.map(v=>typeof v==='string'?o(v):v),selected:selected.map(String),level});}
+function draw(id,topic,prompt,trace,level=1){add({id,world:'stift',topic,type:'trace',prompt,trace,level});}
+function offline(id,topic,prompt,art,level=1){add({id,world:'bewegung',topic,type:'offline',prompt,art,level});}
+
+// Wortwald: Das Gehörte und ein Bild sind wichtiger als das Lesen von geschriebenen Wörtern.
+const initials=[
+['M','Maus','🐭','Sonne','☀️','Fisch','🐟','Tasse','☕'],
+['B','Ball','⚽','Apfel','🍎','Kuh','🐮','Maus','🐭'],
+['S','Sonne','☀️','Brot','🍞','Fisch','🐟','Igel','🦔'],
+['F','Fisch','🐟','Haus','🏠','Ball','⚽','Nase','👃'],
+['H','Haus','🏠','Katze','🐱','Sonne','☀️','Maus','🐭'],
+['K','Katze','🐱','Ball','⚽','Igel','🦔','Rose','🌹'],
+['A','Apfel','🍎','Nase','👃','Tiger','🐯','Ball','⚽'],
+['I','Igel','🦔','Maus','🐭','Sonne','☀️','Tisch','🪑'],
+['R','Rose','🌹','Fisch','🐟','Katze','🐱','Banane','🍌'],
+['T','Tiger','🐯','Haus','🏠','Maus','🐭','Elefant','🐘'],
+['E','Elefant','🐘','Katze','🐱','Fisch','🐟','Nase','👃'],
+['N','Nase','👃','Igel','🦔','Sonne','☀️','Rose','🌹'],
+['L','Löwe','🦁','Apfel','🍎','Maus','🐭','Fisch','🐟'],
+['P','Pferd','🐴','Igel','🦔','Tiger','🐯','Ball','⚽'],
+['W','Wal','🐳','Sonne','☀️','Katze','🐱','Rose','🌹'],
+['Z','Zebra','🦓','Katze','🐱','Apfel','🍎','Maus','🐭']
+];
+initials.forEach((x,i)=>{
+ const [letter,word,art,a,aa,b,bb,c,cc]=x;
+ const options=[o(art,word),o(aa,a),o(bb,b),o(cc,c)];
+ const rotating=options.slice(i%4).concat(options.slice(0,i%4));
+ q('anlaut-'+letter,'wort','Anlaute',`Welches Bild beginnt mit ${letter}? Höre auf den ersten Laut.`,letter,rotating,word,i<9?1:2,'Sprich die Wörter langsam und betone den ersten Laut.');
+});
+const rhymes=[
+['Haus','Maus','Ball','Baum','Tisch','🏠'],['Ball','Fall','Haus','Buch','Fisch','⚽'],['Hand','Sand','Auto','Baum','Maus','✋'],['Maus','Haus','Katze','Baum','Rose','🐭'],
+['Sonne','Tonne','Nase','Schuh','Baum','☀️'],['Hose','Rose','Tisch','Brot','Haus','👖'],['Fisch','Tisch','Maus','Baum','Sonne','🐟'],
+['Kuh','Schuh','Ball','Hand','Hund','🐮'],['Nase','Vase','Auto','Maus','Licht','👃'],['Baum','Traum','Kuh','Fisch','Tisch','🌳'],
+['Buch','Tuch','Sonne','Nase','Hase','📘'],['Hase','Nase','Baum','Schuh','Haus','🐰'],['Licht','Gesicht','Maus','Hose','Fisch','💡'],
+['Regen','Segen','Rose','Lampe','Tiger','🌧️']
+];
+rhymes.forEach(([word,answer,...rest],i)=>{const [b,c,d,art]=rest;q('reim-'+i,'wort','Reime',`Was reimt sich auf ${word}?`,art,[answer,b,c,d].map(v=>o('🎵',v)),answer,i<9?1:2,'Achte darauf, wie die Wörter am Ende klingen.');});
+const syllables=[['Maus',1,'🐭','Maus'],['Ball',1,'⚽','Ball'],['Sonne',2,'☀️','Son-ne'],['Apfel',2,'🍎','Ap-fel'],['Auto',2,'🚗','Au-to'],['Katze',2,'🐱','Kat-ze'],['Hase',2,'🐰','Ha-se'],['Banane',3,'🍌','Ba-na-ne'],['Elefant',3,'🐘','E-le-fant'],['Tomate',3,'🍅','To-ma-te'],['Erdbeere',3,'🍓','Erd-bee-re'],['Giraffe',3,'🦒','Gi-raf-fe'],['Schokolade',4,'🍫','Scho-ko-la-de'],['Lokomotive',5,'🚂','Lo-ko-mo-ti-ve']];
+syllables.forEach(([word,count,art,segments],i)=>q('silbe-'+i,'wort','Silben',`Klatsche das Wort ${word}. Wie viele Silben hat es?`,art,[1,2,3,4,5].filter(n=>count<=4?n<=4:n>=2).map(n=>o('👏',String(n),`${n} Silben`)),String(count),i<8?1:2,`Klatscht gemeinsam: ${segments}.`));
+'ABCMNSEKRLITOUP'.split('').forEach((letter,i)=>q('buchstabe-'+letter,'wort','Buchstaben',`Tippe auf den Buchstaben ${letter}.`,'🔤',[letter,'F','D','H'].filter((v,idx,arr)=>arr.indexOf(v)===idx).concat(['P','J','W','Z']).slice(0,4).map(v=>o(v,v,`Buchstabe ${v}`)),letter,i<7?1:2));
+const stories=[
+['Lina hat einen roten Ball. Sie spielt damit im Garten.','Wo spielt Lina?',['Im Garten','Im Zug','Im Meer'],'Im Garten','⚽'],
+['Ein kleiner Vogel sitzt im Baum. Er singt am Morgen.','Welches Tier singt?',['Ein Vogel','Ein Hund','Ein Fisch'],'Ein Vogel','🐦'],
+['Tom packt eine Banane und eine Trinkflasche in seinen Rucksack.','Was hat Tom eingepackt?',['Eine Banane','Ein Regenschirm','Eine Socke'],'Eine Banane','🎒'],
+['Mila zieht die Gummistiefel an. Draußen regnet es.','Wie ist das Wetter?',['Es regnet','Es schneit','Es ist sehr heiß'],'Es regnet','🌧️'],
+['Momo baut einen Turm aus vier Klötzen. Ein Klotz fällt herunter.','Wie viele Klötze hatte der Turm zuerst?',['Vier','Zwei','Sechs'],'Vier','🧱'],
+['Emil legt die Jacke an den Haken und die Schuhe ins Regal.','Wo legt Emil seine Schuhe hin?',['Ins Regal','Unter das Bett','Auf den Tisch'],'Ins Regal','🧥'],
+['Im Park entdeckt Ada zwei Enten auf dem Teich und eine Ente am Ufer.','Wo sind zwei Enten?',['Auf dem Teich','Auf dem Dach','Im Bus'],'Auf dem Teich','🦆'],
+['Die kleine Eule schläft am Tag. Wenn es dunkel wird, fliegt sie los.','Wann fliegt die Eule los?',['Wenn es dunkel wird','Mittags','Bei Sonnenaufgang'],'Wenn es dunkel wird','🦉']
+];
+stories.forEach(([story,prompt,options,answer,art],i)=>q('geschichte-'+i,'wort','Hörverstehen',prompt,art,options.map(s=>o('💬',s)),answer,i<4?1:2,'Hört euch die kleine Geschichte noch einmal an.',{story}));
+
+// Zahlenmeer: Zählen bis 20, Vergleich, Operationen im vertrauten Zahlenraum, Reihen.
+for(let n=1;n<=20;n++){
+ const art=['🍓','🐠','⭐','🐞','🍎'][n%5];
+ const min=Math.max(0,n-2), opts=[n,n+1,Math.max(0,n-1),n+2].filter((x,i,arr)=>arr.indexOf(x)===i).slice(0,4);
+ q(`menge-${n}`,'zahl','Mengen',`Wie viele sind es? Tippe auf die richtige Zahl.`,Array(n).fill(art),opts.map(v=>o(String(v),String(v),`${v}`)),String(n),n<=10?1:2,'Zähle langsam und zeige auf jedes Bild.');
+}
+const comparisons=[[2,4],[5,3],[6,6],[4,7],[8,5],[9,9],[10,7],[12,14],[15,13],[11,11]];
+comparisons.forEach(([a,b],i)=>q(`vergleich-${i}`,'zahl','Mengen',`Wo sind mehr Sterne? Links, rechts oder gleich viele?`,{left:Array(a).fill('⭐'),right:Array(b).fill('⭐')},[o('⬅️','Links'),o('➡️','Rechts'),o('⚖️','Gleich viele')],a>b?'Links':a<b?'Rechts':'Gleich viele',i<6?1:2));
+const sums=[[2,1,'+'],[3,2,'+'],[4,1,'+'],[5,2,'+'],[1,4,'+'],[6,3,'+'],[5,4,'+'],[4,3,'+'],[7,2,'+'],[2,6,'+'],[5,1,'-'],[6,2,'-'],[8,3,'-'],[9,4,'-'],[7,5,'-'],[10,1,'-'],[10,4,'-'],[9,2,'-']];
+sums.forEach(([a,b,sign],i)=>{
+ const correct=sign==='+'?a+b:a-b, options=[correct,correct+1,Math.max(0,correct-1),correct+2].map(String);
+ q(`rechnung-${i}`,'zahl','Rechnen',sign==='+'?`Du hast ${a} Äpfel. ${b} kommen dazu. Wie viele sind es jetzt?`:`Du hast ${a} Äpfel. ${b} werden weggenommen. Wie viele bleiben übrig?`,{left:Array(a).fill('🍎'),right:Array(b).fill(sign==='+'?'🍏':'❌'),symbol:sign},options.map(v=>o(v,v)),String(correct),i<7?1:2,'Du kannst mit deinen Fingern oder echten Gegenständen mitzählen.');
+});
+for(let start=1;start<=12;start+=2){const order=[start,start+1,start+2].map(String);seq(`reihe-${start}`,'zahl','Zahlenfolgen','Tippe die Zahlen der Reihe nach an. Beginne mit der kleinsten Zahl.',[order[1],order[2],order[0]],order,start<=5?1:2);}
+const forms=[['Dreieck','🔺'],['Kreis','🔵'],['Quadrat','🟦'],['Herz','❤️'],['Stern','⭐']];
+forms.forEach(([name,art],i)=>q(`form-${i}`,'zahl','Formen',`Welche Form ist ein ${name}?`,'🔷',forms.filter((x,ix)=>ix===i || ix<(i+3)%5+1).slice(0,4).map(([label,emoji])=>o(emoji,label)),name,1));
+q('form-ecken','zahl','Formen','Welche Form hat drei Ecken?','📐',[o('🔺','Dreieck'),o('🔵','Kreis'),o('🟦','Quadrat'),o('❤️','Herz')],'Dreieck',2);
+q('form-rund','zahl','Formen','Welche Form hat keine Ecken?','📐',[o('🟦','Quadrat'),o('🔺','Dreieck'),o('🔵','Kreis'),o('⭐','Stern')],'Kreis',1);
+
+// Knobelberg: Blick fürs Muster, Sortieren, Lage und Gedächtnis.
+const patterns=[
+[['🔴','🔵','🔴','🔵'],'🔴',['🔴','🟡','🟢','🔵']],
+[['🌞','🌙','🌞','🌙'],'🌞',['🌙','🌞','⭐','☁️']],
+[['🟨','🟨','🟩','🟨','🟨'],'🟩',['🟨','🟩','🟦','🟥']],
+[['🐶','🐱','🐶','🐱'],'🐶',['🐱','🐶','🐰','🐭']],
+[['⭐','🌸','⭐','🌸'],'⭐',['🌸','⭐','☁️','💎']],
+[['1','2','1','2'],'1',['2','1','3','4']],
+[['🍎','🍌','🍎','🍌'],'🍎',['🍌','🍎','🍇','🍐']],
+[['🔺','🔵','🔺','🔵'],'🔺',['🟦','🔵','🔺','⭐']],
+[['🔴','🟢','🟡','🔴','🟢'],'🟡',['🔴','🟢','🟡','🔵']],
+[['🐝','🌼','🐝','🌼'],'🐝',['🐝','🌼','🦋','🌳']],
+[['⬆️','⬇️','⬆️','⬇️'],'⬆️',['⬆️','⬇️','⬅️','➡️']],
+[['🟦','🟦','⭐','🟦','🟦'],'⭐',['🟦','⭐','🟢','❤️']]
+];
+patterns.forEach(([p,answer,options],i)=>q(`muster-${i}`,'knobel','Muster','Was kommt als Nächstes? Schau dir das Muster an.',[...p,'❓'],options.map(v=>o(v,v,`Bild ${v}`)),answer,i<7?1:2));
+const odd=[
+[['🍎','🍐','🍌','🚗'],'🚗','Drei sind Obst.'],[['🐱','🐶','🐰','🚌'],'🚌','Drei sind Tiere.'],[['🌞','🌧️','❄️','🧸'],'🧸','Drei gehören zum Wetter.'],
+[['🔴','🔵','🟨','🐟'],'🐟','Drei sind Farben.'],[['🚗','🚲','🚌','🍓'],'🍓','Drei sind Fahrzeuge.'],
+[['👟','🧦','🧤','🐸'],'🐸','Drei kann man anziehen.'],[['🍴','🥄','🥣','🌙'],'🌙','Drei benutzt man beim Essen.'],
+[['🐠','🐳','🦀','🦁'],'🦁','Drei leben im Wasser.'],[['🌸','🌳','🌻','🚂'],'🚂','Drei sind Pflanzen.'],[['🟢','🟡','🔴','🍌'],'🍌','Drei sind Farbkreise.']
+];
+odd.forEach(([arr,answer,hint],i)=>q(`anders-${i}`,'knobel','Unterschiede','Welches Bild passt nicht zu den anderen?',arr,arr.map(v=>o(v,v,`Bild ${v}`)),answer,i<5?1:2,hint));
+const sorting=[
+[['🍎','🚌','🍌','🚲','🍐','🧸'],['🍎','🍌','🍐'],'Tippe alle Obstbilder an.'],
+[['🐱','🌳','🐶','☀️','🐰','🌸'],['🐱','🐶','🐰'],'Tippe alle Tiere an.'],
+[['🔴','🐼','🔵','🐟','🟢','🍎'],['🔴','🔵','🟢'],'Tippe alle bunten Kreise an.'],
+[['🚗','🥣','🚲','🐻','🚌','🍓'],['🚗','🚲','🚌'],'Tippe alle Fahrzeuge an.'],
+[['🧤','🍌','🧦','🐝','👟','🍎'],['🧤','🧦','👟'],'Tippe alles an, was man anziehen kann.'],
+[['🌳','🌼','🚌','🌻','🏠','🌲'],['🌳','🌼','🌻','🌲'],'Tippe alle Pflanzen an.']
+];
+sorting.forEach(([items,selected,prompt],i)=>group(`sortieren-${i}`,'knobel','Sortieren',prompt,items.map(v=>o(v,v,`Bild ${v}`)),selected,i<3?1:2));
+const spatial=[
+['Was zeigt nach oben?','⬆️',['⬅️','⬆️','➡️','⬇️']],
+['Was zeigt nach unten?','⬇️',['⬇️','➡️','⬆️','⬅️']],
+['Was zeigt nach links?','⬅️',['➡️','⬆️','⬅️','⬇️']],
+['Was zeigt nach rechts?','➡️',['⬆️','➡️','⬅️','⬇️']],
+['Was ist höher als ein Haus?','Wolke',['Wolke','Kieselstein','Schuh','Blume']],
+['Was kann unter einem Tisch liegen?','Ball',['Sonne','Wolke','Ball','Regenbogen']]
+];
+spatial.forEach(([prompt,answer,opts],i)=>q(`raum-${i}`,'knobel','Raumlage',prompt,'🧭',opts.map(x=>o(x.length<3?x:'🌎',x)),answer,i<4?1:2));
+[1,2,3].forEach(n=>add({id:`memory-${n}`,world:'knobel',topic:'Memory',type:'memory',level:n,prompt:n===1?'Finde die vier gleichen Bildpaare.':'Merke dir gut, wo die Bilder versteckt sind.',pairs:n===1?4:n===2?6:8}));
+
+// Die Vorübungen bewerten NICHT, ob eine Form sauber geschrieben wurde.
+[
+['welle','Schwinge in Wellen über den Teich.'],['zickzack','Zeichne Bergspitzen.'],['kreis','Fahre den Kreis nach.'],['spirale','Drehe eine Schneckenspirale.'],['schleife','Zeichne die große Schleife.'],['linie','Ziehe eine gerade Linie.'],['quadrat','Fahre das Quadrat nach.'],['dreieck','Fahre das Dreieck nach.'],
+['A','Fahre den Buchstaben A nach.'],['M','Fahre den Buchstaben M nach.'],['S','Fahre den Buchstaben S nach.'],['O','Fahre den Buchstaben O nach.'],['L','Fahre den Buchstaben L nach.'],
+['1','Fahre die Zahl Eins nach.'],['2','Fahre die Zahl Zwei nach.'],['3','Fahre die Zahl Drei nach.'],['4','Fahre die Zahl Vier nach.'],['5','Fahre die Zahl Fünf nach.']
+].forEach(([shape,prompt],i)=>draw(`malen-${shape}`,i<6?'Schwungübungen':i<8?'Formen':i<13?'Buchstaben':'Ziffern',prompt,shape,i<8?1:2));
+
+// Entdeckerinsel: Orientierungs- und Alltagswissen.
+const knowledge=[
+['farben','Welche Farbe hat eine reife Banane?','🍌',[o('🟡','Gelb'),o('🔴','Rot'),o('🔵','Blau'),o('🟢','Grün')],'Gelb'],
+['farben','Welche Farbe haben viele Blätter im Sommer?','🍃',[o('🟢','Grün'),o('🔵','Blau'),o('🔴','Rot')],'Grün'],
+['farben','Welche Farbe hat der Himmel oft bei gutem Wetter?','☀️',[o('🔵','Blau'),o('🟣','Lila'),o('🟠','Orange')],'Blau'],
+['jahreszeit','In welcher Jahreszeit fallen viele bunte Blätter von den Bäumen?','🍂',['Herbst','Sommer','Winter','Frühling'],'Herbst'],
+['jahreszeit','Wann kann es bei uns schneien?','❄️',['Winter','Sommer','Herbst','Frühling'],'Winter'],
+['jahreszeit','Wann blühen viele Blumen zum ersten Mal wieder?','🌷',['Frühling','Winter','Herbst','Sommer'],'Frühling'],
+['jahreszeit','In welcher Jahreszeit gehen viele Menschen schwimmen?','🏖️',['Sommer','Winter','Herbst','Frühling'],'Sommer'],
+['zeit','Was kommt nach Montag?','📅',['Dienstag','Sonntag','Freitag','Mittwoch'],'Dienstag'],
+['zeit','Was kommt nach Freitag?','📅',['Samstag','Montag','Dienstag','Donnerstag'],'Samstag'],
+['zeit','Was kommt nach dem Morgen?','🌞',['Mittag','Abend','Nacht'],'Mittag'],
+['zeit','Was kommt nach dem Abend?','🌙',['Nacht','Morgen','Mittag'],'Nacht'],
+['zeit','Wann putzen wir normalerweise die Zähne?','🪥',['Morgens und abends','Nur einmal im Monat','Nie'],'Morgens und abends'],
+['natur','Woraus wächst oft eine Pflanze?','🌱',['Aus einem Samen','Aus einem Stein','Aus einem Schuh'],'Aus einem Samen'],
+['natur','Was brauchen die meisten Pflanzen zum Wachsen?','🌿',['Wasser und Licht','Nur einen Ball','Einen Fernseher'],'Wasser und Licht'],
+['natur','Wer baut oft Nester?','🪺',['Vögel','Fische','Schnecken'],'Vögel'],
+['natur','Welches Tier wird aus einer Raupe?','🐛',['Schmetterling','Pferd','Delfin'],'Schmetterling'],
+['natur','Was schmilzt, wenn es warm wird?','☀️',['Eis','Holz','Steine'],'Eis'],
+['sicherheit','Die Ampel zeigt Rot. Was machst du?','🚦',['Ich bleibe stehen.','Ich laufe einfach los.','Ich schließe die Augen.'],'Ich bleibe stehen.'],
+['sicherheit','Du findest ein unbekanntes Medikament. Was machst du?','💊',['Ich fasse es nicht an und hole einen Erwachsenen.','Ich probiere es.','Ich teile es mit Freunden.'],'Ich fasse es nicht an und hole einen Erwachsenen.'],
+['sicherheit','Du bist draußen und findest den Weg nicht. Was kann helfen?','🗺️',['Ich frage eine vertrauenswürdige erwachsene Person um Hilfe.','Ich laufe ziellos weiter.','Ich verstecke mich.'],'Ich frage eine vertrauenswürdige erwachsene Person um Hilfe.'],
+['sicherheit','Du möchtest über die Straße. Was machst du zuerst?','🚸',['Ich halte an und schaue nach dem Verkehr.','Ich renne sofort los.','Ich spiele auf der Straße.'],'Ich halte an und schaue nach dem Verkehr.'],
+['sicherheit','Du fährst Fahrrad. Was schützt deinen Kopf?','🚲',['Ein passender Helm','Eine Sonnenbrille','Ein Schal'],'Ein passender Helm'],
+['alltag','Was gehört oft in den Schulranzen?','🎒',['Federmäppchen','Kochtopf','Gießkanne'],'Federmäppchen'],
+['alltag','Was ist sinnvoll, wenn du Durst hast?','💧',['Etwas trinken','Nur springen','Die Ohren zuhalten'],'Etwas trinken'],
+['alltag','Womit kann man sich die Hände waschen?','🧼',['Wasser und Seife','Sand und Kreide','Papier und Farbe'],'Wasser und Seife'],
+['alltag','Womit kannst du einen Stift spitzen?','✏️',['Anspitzer','Löffel','Kissen'],'Anspitzer'],
+['alltag','Was ziehst du an, wenn es draußen stark regnet?','🌧️',['Regenjacke','Badeanzug','Kurze Schlafhose'],'Regenjacke']
+];
+knowledge.forEach(([topic,prompt,art,opts,answer],i)=>q(`wissen-${i}`,'wissen',({farben:'Farben',jahreszeit:'Jahreszeiten',zeit:'Wochentage',natur:'Natur',sicherheit:'Sicherheit',alltag:'Alltag'})[topic],prompt,art,opts.map(v=>typeof v==='string'?o('💬',v):v),answer,i<15?1:2));
+
+const situations=[
+['Gefühle','Ein Kind ist traurig. Was kannst du tun?','😢','Fragen, ob es Hilfe oder Gesellschaft möchte.',['Fragen, ob es Hilfe oder Gesellschaft möchte.','Auslachen.','Es absichtlich ärgern.']],
+['Freundschaft','Du möchtest mitspielen. Was kannst du sagen?','🛝','Darf ich mitspielen?',['Darf ich mitspielen?','Geht alle weg!','Ich nehme alles weg!']],
+['Selbstständigkeit','Du verstehst eine Aufgabe nicht. Was kannst du tun?','🙋','Ich frage nach Hilfe.',['Ich frage nach Hilfe.','Ich tue so, als wäre alles klar.','Ich werfe die Sachen weg.']],
+['Gefühle','Du bist sehr wütend. Was könnte helfen?','😤','Ich atme ruhig durch und sage, was los ist.',['Ich atme ruhig durch und sage, was los ist.','Ich schubse andere.','Ich zerstöre Sachen.']],
+['Freundschaft','Jemand sagt „Stopp, das möchte ich nicht“. Was machst du?','🛑','Ich höre auf und respektiere das.',['Ich höre auf und respektiere das.','Ich mache einfach weiter.','Ich lache darüber.']],
+['Selbstständigkeit','Du musst auf die Toilette. Was kannst du tun?','🚻','Ich sage rechtzeitig Bescheid.',['Ich sage rechtzeitig Bescheid.','Ich sage lieber gar nichts.','Ich warte, bis es zu spät ist.']],
+['Freundschaft','Zwei Kinder wollen dasselbe Spielzeug. Was hilft?','🧸','Reden und eine gemeinsame Lösung finden.',['Reden und eine gemeinsame Lösung finden.','Es kaputt machen.','Es verstecken.']],
+['Gefühle','Ein anderes Kind gewinnt. Was kannst du sagen?','🏅','Glückwunsch!',['Glückwunsch!','Das war sowieso unfair!','Ich spiele nie wieder!']],
+['Selbstständigkeit','Du hast dein Pausenbrot vergessen. Was kannst du tun?','🥪','Einem Erwachsenen Bescheid sagen.',['Einem Erwachsenen Bescheid sagen.','Still bleiben, obwohl ich Hunger habe.','Anderen das Essen wegnehmen.']],
+['Gefühle','Du freust dich riesig. Was darfst du tun?','🥳','Meine Freude zeigen und auf andere achten.',['Meine Freude zeigen und auf andere achten.','Andere absichtlich stoßen.','Andere auslachen.']],
+['Freundschaft','Ein Kind sitzt allein und wirkt traurig. Was kannst du tun?','🌷','Freundlich fragen, ob es Gesellschaft möchte.',['Freundlich fragen, ob es Gesellschaft möchte.','Es zu etwas zwingen.','Es auslachen.']],
+['Selbstständigkeit','Deine Jacke hängt nicht am Haken. Was kannst du versuchen?','🧥','Ich hänge sie selbst auf oder bitte um Hilfe.',['Ich hänge sie selbst auf oder bitte um Hilfe.','Ich werfe sie in den Matsch.','Ich lasse sie absichtlich liegen.']],
+['Gefühle','Du vermisst jemanden in der Schule. Was kann helfen?','💛','Ich erzähle einer vertrauten Person davon.',['Ich erzähle einer vertrauten Person davon.','Ich schäme mich dafür.','Ich muss das allein schaffen.']],
+['Freundschaft','Jemand hat dir aus Versehen wehgetan. Was kannst du sagen?','💬','Stopp, das hat mir wehgetan.',['Stopp, das hat mir wehgetan.','Ich verletze zurück.','Ich muss schweigen.']],
+['Selbstständigkeit','Du bekommst eine Aufgabe und brauchst mehr Zeit. Was kannst du tun?','⌛','Ich frage, ob ich noch Zeit bekommen kann.',['Ich frage, ob ich noch Zeit bekommen kann.','Ich gebe sofort auf.','Ich verstecke das Blatt.']],
+['Gefühle','Du hast Angst vor etwas Neuem. Was könnte helfen?','🫶','Mit einem Erwachsenen reden und es in kleinen Schritten versuchen.',['Mit einem Erwachsenen reden und es in kleinen Schritten versuchen.','Andere auslachen.','Die Angst verstecken müssen.']],
+['Freundschaft','Ein Kind hat eine andere Idee als du. Was kannst du tun?','🎨','Zuhören und gemeinsam überlegen.',['Zuhören und gemeinsam überlegen.','Es immer unterbrechen.','Seine Idee verbieten.']],
+['Selbstständigkeit','Du findest deinen Platz nicht. Was hilft?','🏫','Ich frage freundlich nach.',['Ich frage freundlich nach.','Ich verstecke mich.','Ich renne einfach weg.']],
+['Gefühle','Du hast einen Fehler gemacht. Was stimmt?','💡','Fehler helfen mir beim Lernen.',['Fehler helfen mir beim Lernen.','Nur perfekte Antworten zählen.','Ich darf nie wieder probieren.']],
+['Freundschaft','Du siehst, dass jemand geärgert wird. Was kann helfen?','🧑‍🤝‍🧑','Ich hole Hilfe bei einem Erwachsenen.',['Ich hole Hilfe bei einem Erwachsenen.','Ich mache mit.','Ich filme es.']]
+];
+situations.forEach(([topic,prompt,art,answer,other],i)=>q(`miteinander-${i}`,'mut',topic,prompt,art,other.map(x=>o('💬',x)),answer,i<10?1:2,'Es gibt oft mehrere freundliche Wege. Hier üben wir eine hilfreiche Möglichkeit.'));
+
+[
+['Bewegen','Balanciere auf einer Linie am Boden. Breite die Arme aus wie ein Flugzeug.','🛩️'],
+['Bewegen','Springe fünfmal wie ein Frosch. Danach tief durchatmen.','🐸'],
+['Bewegen','Stelle dich auf ein Bein und zähle langsam bis fünf. Dann das andere Bein.','🦩'],
+['Bewegen','Mache zehn lustige Hampelmänner. Eine Pause ist jederzeit okay.','⭐'],
+['Bewegen','Wirf einem Erwachsenen einen weichen Ball zu. Fang ihn wieder.','⚽'],
+['Alltagsspiele','Decke den Tisch: Wie viele Teller braucht ihr heute? Zähle sie laut.','🍽️'],
+['Alltagsspiele','Sammelt gemeinsam fünf Dinge, die mit M beginnen.','Ⓜ️'],
+['Alltagsspiele','Höre eine kleine Geschichte. Erzähle danach, was zuerst und zuletzt passiert.','📖'],
+['Alltagsspiele','Sortiere Socken zu Paaren. Wie viele Paare sind es?','🧦'],
+['Alltagsspiele','Suche drei runde Dinge in deinem Zimmer.','⚪'],
+['Kreativsein','Male ein Bild von deinem liebsten Schultag in deiner Fantasie.','🎨'],
+['Kreativsein','Bastle aus Papier einen Brief oder ein Bild für jemanden.','💌'],
+['Kreativsein','Baue mit Bauklötzen einen Turm, der höher als deine Hand ist.','🧱'],
+['Kreativsein','Knete drei Figuren: eine Kugel, eine Schlange und einen Stern.','🟡']
+].forEach(([topic,prompt,art],i)=>offline(`draußen-${i}`,topic,prompt,art));
+
+// Selbstständigkeit, Scherenführung und Naturversuche gehören auch ins echte Leben.
+[
+ ['Falte ein Blatt Papier genau in der Mitte und streiche die Falte glatt.','📄','Kreativsein'],
+ ['Schneide mit einer Kinderschere und einem Erwachsenen an einer dicken Linie entlang.','✂️','Kreativsein'],
+ ['Packe einen Übungsrucksack: Stift, Trinkflasche, Brotdose. Findest du alles wieder?','🎒','Alltagsspiele'],
+ ['Versuche, deine Jacke zu schließen. Falls es noch schwer ist, bitte um Hilfe.','🧥','Alltagsspiele'],
+ ['Lege vier Gegenstände vom kleinsten zum größten hin.','📏','Alltagsspiele'],
+ ['Stelle dich rechts neben einen Stuhl, dann links. Lass dir helfen, falls du unsicher bist.','🪑','Bewegen'],
+ ['Teste unter Aufsicht in einer Schüssel mit Wasser: Schwimmt ein Korken? Und ein Löffel?','🛟','Alltagsspiele'],
+ ['Beobachte draußen den Schatten eines Gegenstands. Bewegt er sich im Laufe des Tages?','☀️','Alltagsspiele']
+].forEach(([prompt,art,topic],i)=>offline(`extra-${i}`,topic,prompt,art));
+
+// Musisch-ästhetische Bildung: einfache, bewusst bildschirmfreie Rhythmusspiele.
+[
+ ['Klatsche einen Rhythmus: zweimal langsam, dreimal schnell.','👏'],
+ ['Singe ein Lied, das du magst. Klatsche im Takt dazu.','🎶'],
+ ['Mach Regenmusik: reibe die Hände, schnippe und trommle leise auf die Oberschenkel.','🌧️'],
+ ['Wie klingt ein tiefer Bär und wie ein hohes Mäuschen? Probier beide Stimmen.','🐻'],
+ ['Erfinde einen Rhythmus mit zwei Löffeln auf einem weichen Kissen.','🥁'],
+ ['Höre ein Lied und bewege dich schnell oder langsam zum Rhythmus.','💃'],
+ ['Sprich deinen Namen langsam und klatsche zu jeder Silbe.','🗣️'],
+ ['Male mit Buntstiften zur Musik. Welche Linien passen zu den Tönen?','🎨'],
+ ['Höre gemeinsam mit einem Erwachsenen hin: Welche Geräusche gibt es gerade?','👂'],
+ ['Stampfe deinen Lieblingsrhythmus. Ein Erwachsener versucht, ihn nachzumachen.','👣'],
+ ['Spiele mit deiner Stimme laut und leise, ohne andere zu erschrecken.','🎵'],
+ ['Erfindet zu zweit ein Lied mit drei Tiernamen.','🐦']
+].forEach(([prompt,art],i)=>offline(`musik-${i}`,'Musik & Rhythmus',prompt,art));
+
+// A simple shared data API for rendering and automated tests.
+const TASK_BY_ID = Object.fromEntries(TASKS.map(t=>[t.id,t]));
+
+</script>
+<script>
+'use strict';
+// Local-only preschool game. No remote APIs, analytics, credentials or accounts.
+const STORE='kleine-schritte-data-v2';
+const LEGACY_STORE='kleine-schritte-data-v1';
+const NAV=[['home','🏡','Start'],['worlds','🗺️','Lernwelten'],['rewards','🏆','Abzeichen'],['parents','👨‍👩‍👧','Für Eltern']];
+const $=q=>document.querySelector(q);
+const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const limit=(v,min,max)=>Math.min(max,Math.max(min,v));
+const worldById=id=>WORLDS.find(w=>w.id===id);
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;};
+function hash(s){let h=2166136261;for(const ch of s){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
+function defaults(){return {name:'',avatar:'☁️',voice:true,history:[],missions:{},legacyStars:0};}
+function safeGet(key){try{return JSON.parse(localStorage.getItem(key));}catch{return null;}}
+function loadData(){
+ const raw=safeGet(STORE);
+ if(raw&&typeof raw==='object'&&Array.isArray(raw.history)){
+  return {...defaults(),name:typeof raw.name==='string'?raw.name.slice(0,22):'',avatar:typeof raw.avatar==='string'?raw.avatar:'☁️',voice:raw.voice!==false,
+   history:raw.history.filter(v=>v&&typeof v==='object'&&typeof v.id==='string'&&typeof v.date==='string'&&TASK_BY_ID[v.id]).slice(-3000),
+   missions:raw.missions&&typeof raw.missions==='object'?raw.missions:{},legacyStars:Number.isFinite(raw.legacyStars)?limit(raw.legacyStars,0,99999):0};
+ }
+ const old=safeGet(LEGACY_STORE);
+ if(old&&typeof old==='object')return {...defaults(),name:typeof old.childName==='string'?old.childName.slice(0,22):'',avatar:typeof old.avatar==='string'?old.avatar:'☁️',legacyStars:Number.isFinite(old.stars)?limit(old.stars,0,99999):0};
+ return defaults();
+}
+let data=loadData(),screen='home',chosenWorld='wort',chosenTopic='Alle',currentTask=null,gameState=null,origin='home',memoTimer=null,toastTimer=null,activeModal=false,pendingFocus=null;
+function persist(){try{localStorage.setItem(STORE,JSON.stringify(data));return true;}catch{notify('Dein Browser kann den Fortschritt gerade nicht speichern.');return false;}}
+const stars=()=>data.legacyStars+data.history.length;
+const done=id=>data.history.some(e=>e.id===id&&e.date===today());
+function visits(world){return data.history.filter(e=>e.world===world).length;}
+const worldTasks=id=>TASKS.filter(t=>t.world===id);
+const playedDays=()=>new Set(data.history.map(e=>e.date)).size;
+function dailyMissions(){
+ const key=today();const saved=data.missions[key];
+ if(Array.isArray(saved)&&saved.length===3&&saved.every(id=>TASK_BY_ID[id]))return saved;
+ const a=TASKS.filter(t=>t.world==='wort'&&t.level<=Math.min(2,1+Math.floor(visits('wort')/9)));
+ const b=TASKS.filter(t=>t.world==='zahl'&&t.level<=Math.min(2,1+Math.floor(visits('zahl')/9)));
+ const otherWorld=['knobel','stift','wissen','mut','bewegung'][hash(key+'world')%5];
+ const c=TASKS.filter(t=>t.world===otherWorld&&t.level<=Math.min(2,1+Math.floor(visits(otherWorld)/7)));
+ const pick=(tasks,salt)=>{
+  const unseen=tasks.filter(t=>!data.history.some(e=>e.id===t.id));
+  const pool=unseen.length?unseen:tasks;
+  return pool[hash(key+salt)%pool.length].id;
+ };
+ const ids=[pick(a,'A'),pick(b,'B'),pick(c,'C')];
+ data.missions[key]=ids;
+ const dates=Object.keys(data.missions).sort();if(dates.length>40)dates.slice(0,dates.length-40).forEach(d=>delete data.missions[d]);
+ persist();return ids;
+}
+function mascot(extra=''){
+ return `<svg class="momo-svg ${extra}" viewBox="0 0 420 350" role="img" aria-label="Momo, eine freundliche kleine Wolke, winkt dir zu" xmlns="http://www.w3.org/2000/svg">
+ <ellipse cx="207" cy="315" rx="120" ry="15" fill="#9683b6" opacity=".14"/>
+ <g class="cloud-orbit"><circle cx="206" cy="154" r="126" fill="#fff" opacity=".22"/><path d="m96 259q-17-55 27-90Q125 96 191 89q71-6 93 56 76 6 76 78 0 56-63 69H150q-44-5-54-33Z" fill="#b7a4f4" opacity=".35"/></g>
+ <g class="body-cloud"><path d="m147 254-27 42 25-1 12-22m131-18 29 43-27-3-19-27" fill="#9182c3"/><path d="m112 236q-43-7-54 26-7 25 9 28 20 7 45-23" fill="#fff" stroke="#e6d8fc" stroke-width="5"/><g class="arm-right"><path d="m294 235q51-9 59-46 4-21 16-17 21 7 13 42-11 53-73 67" fill="#fff" stroke="#e6d8fc" stroke-width="6" stroke-linejoin="round"/></g>
+ <path d="m93 257q-39-20-27-66 9-33 39-42-3-57 50-74 20-6 38 1 21-37 72-29 43 7 58 48 36-2 54 31 15 26 2 53 27 23 20 61-8 47-56 54-83 13-201 1-30-3-49-38Z" fill="#fff" stroke="#e5d6fc" stroke-width="6" stroke-linejoin="round"/>
+ <ellipse class="blush" cx="153" cy="200" rx="19" ry="12" fill="#ffb6c5"/><ellipse class="blush" cx="295" cy="200" rx="19" ry="12" fill="#ffb6c5"/>
+ <ellipse class="eye-l" cx="180" cy="182" rx="8" ry="12" fill="#4d416b"/><ellipse class="eye-r" cx="269" cy="182" rx="8" ry="12" fill="#4d416b"/><circle cx="183" cy="178" r="3" fill="#fff"/><circle cx="272" cy="178" r="3" fill="#fff"/>
+ <path class="momo-mouth" d="M207 215q18 22 37 0" fill="none" stroke="#50436c" stroke-width="6" stroke-linecap="round"/><path d="m198 108 19-31 11 25" fill="#fff" stroke="#e5d6fc" stroke-width="5" stroke-linejoin="round"/>
+ <path d="m158 107 13-31 22 27" fill="#fff" stroke="#e5d6fc" stroke-width="5" stroke-linejoin="round"/>
+ <path d="m169 265 28 21h66l23-21" fill="none" stroke="#e8b97c" stroke-width="9" stroke-linecap="round"/><path d="m184 268v26h89v-26" fill="#eac08b" stroke="#cc9c69" stroke-width="4"/><path d="m190 282h72" stroke="#f9e1b8" stroke-width="3"/>
+ </g>
+ <path class="orbit-star" d="m62 82 7 19 21 6-21 8-7 20-7-20-20-8 20-6Z" fill="#ffe09c"/><path d="m343 40 6 15 16 6-16 5-6 16-6-16-15-5 15-6Z" fill="#ffdb99"/><circle cx="375" cy="110" r="8" fill="#ffb7b2"/><circle cx="49" cy="178" r="7" fill="#fff"/>
+ </svg>`;
+}
+function soundSupported(){return 'speechSynthesis' in window&&typeof SpeechSynthesisUtterance!=='undefined';}
+const emojiSay={"🔴":"roter Kreis","🔵":"blauer Kreis","🟢":"grüner Kreis","🟡":"gelber Kreis","🟨":"gelbes Quadrat","🟩":"grünes Quadrat","🟦":"blaues Quadrat","⬆️":"Pfeil nach oben","⬇️":"Pfeil nach unten","⬅️":"Pfeil nach links","➡️":"Pfeil nach rechts","⭐":"Stern","🌞":"Sonne","🌙":"Mond","🟧":"orangefarbenes Quadrat","🐶":"Hund","🐱":"Katze","🐝":"Biene","🌼":"Blume","🍎":"Apfel","🍌":"Banane","🔺":"Dreieck","☁️":"Wolke","🚌":"Bus","🚗":"Auto","🐟":"Fisch","🐻":"Bär","🐰":"Hase","🐸":"Frosch","🐠":"Fisch","🧸":"Teddybär","👟":"Schuh","🧦":"Socke","🧤":"Handschuh","🚲":"Fahrrad","🌲":"Baum","🌳":"Baum","🌸":"Blume","🌻":"Sonnenblume","🍐":"Birne","🍓":"Erdbeere","🥣":"Schüssel","🍴":"Besteck","🥄":"Löffel","🦀":"Krabbe","🦁":"Löwe","🐳":"Wal","🦋":"Schmetterling","❤️":"Herz","🌧️":"Regen","❄️":"Schnee","🐼":"Panda","🐝":"Biene"};
+const verbal=s=>emojiSay[s]||String(s);
+function speak(text,{force=false}={}){
+ if(!force&&!data.voice)return;
+ if(!soundSupported()){notify('Hier gibt es leider keine Sprachausgabe. Bitte die Hör-Taste auf einem unterstützten Gerät ausprobieren.');return;}
+ try{
+  window.speechSynthesis.cancel();
+  document.documentElement.classList.remove('momo-talking');
+  const utterance=new SpeechSynthesisUtterance(String(text));utterance.lang='de-DE';utterance.rate=.82;utterance.pitch=1.11;
+  const deVoices=window.speechSynthesis.getVoices().filter(v=>v.lang?.toLowerCase().startsWith('de'));
+  if(deVoices.length)utterance.voice=deVoices.find(v=>v.localService)||deVoices[0];
+  utterance.onstart=()=>document.documentElement.classList.add('momo-talking');
+  utterance.onend=utterance.onerror=()=>document.documentElement.classList.remove('momo-talking');
+  window.speechSynthesis.speak(utterance);
+ }catch{notify('Vorlesen hat leider nicht geklappt. Tippe noch einmal auf das Hörsymbol.');}
+}
+function announceTask(task=currentTask){if(!task)return;
+ const prefix=task.story?`Hörgeschichte. ${task.story}. Und jetzt die Frage. `:'';
+ const endings=task.type==='choice'?` Antwortmöglichkeiten: ${task.options.map((v,i)=>`Antwort ${i+1}: ${verbal(v.say)}`).join('. ')}.`:'';
+ speak(`${prefix}${task.prompt}${endings}`,{force:true});
+}
+function navView(){return NAV.map(([id,icon,label])=>`<button class="nav-link ${screen===id||(id==='worlds'&&['world','play'].includes(screen))?'selected':''}" data-page="${id}" aria-label="${label}" ${screen===id?'aria-current="page"':''}><span class="nav-ico">${icon}</span><span>${label}</span></button>`).join('');}
+function toolbar(){const label=screen==='home'?'Guten Tag, '+esc(data.name||'Entdecker!'):screen==='worlds'?'Deine bunte Lernwelt':screen==='world'?worldById(chosenWorld)?.name:screen==='play'?'Dein Lernabenteuer':screen==='rewards'?'Deine Abzeichen':'Für deine Eltern';
+ return `<header class="toolbar"><div class="breadcrumbs">KLEINE SCHRITTE <span aria-hidden="true">/</span> <strong>${label}</strong></div><div class="tool-actions"><span class="toolpill star" aria-label="${stars()} gesammelte Sterne">⭐ ${stars()}</span><button class="toolicon" title="${data.voice?'Töne und automatisches Vorlesen ausschalten':'Töne und automatisches Vorlesen einschalten'}" aria-label="${data.voice?'Töne und automatisches Vorlesen ausschalten':'Töne und automatisches Vorlesen einschalten'}" aria-pressed="${data.voice}" data-action="toggle-voice">${data.voice?'🔊':'🔇'}</button><button class="toolpill" data-page="parents" aria-label="Zum Elternbereich"><span class="user-dot">${esc(data.avatar)}</span><span class="parent-short">Eltern</span></button></div></header>`;
+}
+function shell(page){return `<div class="app-frame"><aside class="sidebar"><button class="brand" data-page="home"><span class="brand-icon">☁️</span><span class="brand-text"><strong>Kleine<br>Schritte</strong><small>Deine Lernwelt</small></span></button><div><div class="nav-label">Entdecker-Menü</div><nav class="nav-list" aria-label="Hauptmenü">${navView()}</nav></div><div class="nav-bottom"><div class="helper-note"><span class="flower">🌱</span><strong>Jeder Schritt zählt!</strong><p>Du darfst entdecken, Fehler machen und immer wieder Neues probieren.</p></div><p class="nav-legal">Werbefrei · Kein Zeitdruck · Für neugierige Kinder</p></div></aside><main class="content">${toolbar()}<div class="page-enter">${page}</div></main><nav class="mobile-nav" aria-label="Mobiles Hauptmenü">${NAV.map(([id,icon,label])=>`<button class="mobile-tab ${screen===id||(id==='worlds'&&['world','play'].includes(screen))?'active':''}" data-page="${id}" aria-label="${label}"><span class="tabicon">${icon}</span><span>${label}</span></button>`).join('')}</nav></div>`;}
+function sectionHead(title,subtitle,extra=''){return `<div class="section-top"><div><h2>${title}</h2>${subtitle?`<p>${subtitle}</p>`:''}</div>${extra}</div>`;}
+function worldCard(w){const n=visits(w.id),total=worldTasks(w.id).length;
+ return `<button class="world-card" data-world="${w.id}" aria-label="${w.name}. ${w.desc}. ${total} Aufgaben."><div class="world-image" style="background:${w.color}"><span class="world-spark one">✨</span><span class="world-emoji" aria-hidden="true">${w.icon}</span><span class="world-spark two">✦</span></div><div class="world-info"><h3>${w.name}</h3><p>${w.short}</p><div class="world-meta"><span>${total} Abenteuer</span><span>${n?'Schon entdeckt ✓':'Los geht’s ↗'}</span></div></div></button>`;
+}
+function missionCards(){return dailyMissions().map((id,i)=>{const t=TASK_BY_ID[id],w=worldById(t.world),finished=done(id);
+ return `<button class="mission-card ${finished?'done':''}" data-task="${id}"><div class="mission-top"><span class="mission-icon" style="background:${w.color}" aria-hidden="true">${w.icon}</span><span class="mission-counter">MISSION 0${i+1}</span></div><h3>${esc(w.name)}</h3><p>${esc(t.topic)} · ${finished?'Schon geschafft!':'Ein kleines Abenteuer wartet'}</p><div class="mission-footer"><span>${finished?'Nochmal spielen':'Jetzt spielen'}</span><span>${finished?'<span class="check">✓</span>':'→'}</span></div></button>`;
+ }).join('');}
+function home(){const m=dailyMissions(),finished=m.filter(done).length,complete=finished===3,name=esc(data.name||'du');
+ return `<section aria-label="Startseite"><div class="hero"><span class="hero-badge">✦ Willkommen, Schulentdecker!</span><h1>Hallo, <em>${name}!</em><br>Auf ins Abenteuer!</h1><p>Ich bin Momo ☁️. Komm mit mir in sieben bunte Lernwelten. Wir spielen, hören, zählen und entdecken gemeinsam!</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" data-action="next-mission">${complete?'Neue Spiele entdecken →':'🎮 Los geht’s!'}</button><button class="btn white" data-action="speak-home" aria-label="Begrüßung vorlesen">🔊 Hören</button></div><span class="sky-star a">✦</span><span class="sky-star b">✧</span><span class="sky-star c">✦</span><div class="hero-art">${mascot()}</div></div>
+ ${sectionHead('Deine drei Tagesmissionen 🌈','Jeden Tag drei kleine Abenteuer. Du bestimmst das Tempo.',`<span class="level">${finished} von 3 geschafft</span>`)}<div class="missions">${missionCards()}</div><div class="day-progress"><div class="round-progress">${finished}/3</div><div class="day-content"><strong>${complete?'Juhu, alle Missionen geschafft! 🎉':finished===0?'Dein Abenteuer beginnt!':'Du machst das großartig!'}</strong><p>${complete?'Du darfst jetzt eine Pause machen oder frei weiterspielen.':'Jeder Versuch ist gut. Niemand muss alles auf einmal schaffen.'}</p><div class="track" aria-label="${finished} von 3 Tagesmissionen abgeschlossen"><div class="fill" style="width:${finished/3*100}%"></div></div></div></div>
+ ${sectionHead('Wohin fliegen wir heute?','Tippe auf eine Insel, die dich neugierig macht.',`<button class="link" data-page="worlds">Alle Welten ansehen →</button>`)}<div class="world-grid">${WORLDS.map(worldCard).join('')}</div>
+ <div class="below-row"><div class="activity-card"><span class="activity-ico">🧦</span><div><h3>Heute ganz ohne Bildschirm</h3><p>Sammelt Sockenpaare und zählt, wie viele Paare ihr findet.</p><button class="link" data-world="bewegung">Mehr Ideen entdecken →</button></div></div><div class="nubi-tip"><span class="nubi-head">☁️</span><div><h3>Momos Tipp</h3><p>Zehn Minuten Spielspaß sind genug. Vorlesen, draußen spielen und kuscheln sind genauso wichtig.</p></div></div></div></section>`;
+}
+function worldsPage(){return `<section><div class="page-head"><div class="eyebrow">🗺️ Deine Abenteuerkarte</div><h1>Sieben bunte Lernwelten!</h1><p>In jeder Welt warten andere Spiele. Es gibt keinen Wettbewerb, keine Stoppuhr und keine schlechten Noten.</p></div><div class="world-grid">${WORLDS.map(worldCard).join('')}</div></section>`;}
+function iconFor(t){if(t.type==='memory')return '🧠';if(t.type==='trace')return '🖍️';if(t.type==='offline')return '🏃';if(t.type==='sequence')return '🔢';if(t.type==='select')return '👆';if(t.story)return '📖';if(Array.isArray(t.art))return t.art[0]||'⭐';if(typeof t.art==='object')return '🔢';return String(t.art||'⭐').slice(0,5);}
+function titleFor(t){switch(t.topic){case 'Anlaute':return 'Hör genau hin!';case 'Reime':return 'Reimspaß';case 'Silben':return 'Klatschen & Lauschen';case 'Buchstaben':return 'Buchstabenschatz';case 'Hörverstehen':return 'Eine kleine Geschichte';case 'Mengen':return 'Zählen wir!';case 'Rechnen':return 'Zahlenspaß';case 'Zahlenfolgen':return 'Zahlen in Ordnung';case 'Memory':return 'Bilder-Memory';case 'Schwungübungen':return 'Schwungtraining';default:return t.topic;}}
+function worldPage(){const w=worldById(chosenWorld)||WORLDS[0],tasks=worldTasks(w.id),topics=['Alle',...w.topics.filter(t=>tasks.some(x=>x.topic===t))];const shown=tasks.filter(t=>chosenTopic==='Alle'||chosenTopic===t.topic);
+ return `<section><button class="back" data-page="worlds">← Zurück zur Abenteuerkarte</button><div class="world-intro" style="background:${w.color}"><div><div class="eyebrow" style="color:${w.accent}">${w.area}</div><h1>${w.name}</h1><p>${w.desc}. Du darfst jede Aufgabe so oft spielen, wie du magst.</p></div><span class="world-intro-icon" aria-hidden="true">${w.icon}</span></div>${sectionHead('Wähle ein Abenteuer','Große Bilder und eine Hör-Taste helfen dir dabei.')}<div class="topic-list" role="group" aria-label="Aufgaben nach Thema filtern">${topics.map(t=>`<button class="topic-tag ${chosenTopic===t?'active':''}" data-topic="${esc(t)}" aria-pressed="${chosenTopic===t}">${esc(t)}</button>`).join('')}</div><div class="task-grid">${shown.map(t=>`<button class="task-card" data-task="${t.id}"><span class="task-ico" aria-hidden="true">${iconFor(t)}</span><span><h3>${esc(titleFor(t))}</h3><p>${esc(t.topic)} · ${t.level===1?'Zum Einstieg':'Schon etwas kniffliger'}</p></span><span class="arrow" aria-hidden="true">${done(t.id)?'✓':'›'}</span></button>`).join('')}</div></section>`;
+}
+function visual(t){if(t.type==='trace'||t.type==='memory'||t.type==='sequence'||t.type==='select'||t.type==='offline')return '';
+ if(t.art&&typeof t.art==='object'&&!Array.isArray(t.art)){
+  const a=t.art;
+  const renderGroup=arr=>`<div class="compare-panel">${arr.map(v=>`<span class="single" aria-hidden="true">${esc(v)}</span>`).join('')}</div>`;
+  return `<div class="game-art"><div class="compare-art">${renderGroup(a.left)}<span class="compare-middle">${esc(a.symbol||'VS')}</span>${renderGroup(a.right)}</div></div>`;
+ }
+ if(Array.isArray(t.art))return `<div class="game-art"><div class="art-tiles ${t.art.length>12?'numerous':t.art.length<5?'large':''}">${t.art.map(v=>`<span class="single" aria-hidden="true">${esc(v)}</span>`).join('')}</div></div>`;
+ return `<div class="game-art"><span class="big-art" aria-hidden="true">${esc(t.art||'✨')}</span></div>`;
+}
+function feedbackHtml(){const s=gameState,t=currentTask;if(!s)return '';
+ if(s.done){return `<div class="feedback success" role="status"><span class="success-emoji">${t.type==='offline'?'🌼':'⭐'}</span><h3>${t.type==='offline'?'Toll ausprobiert!':'Juhu, geschafft!'}</h3><p>${s.earned?'Ein neuer Stern für dich! ⭐':'Diese Übung kannst du immer wieder spielen. 💜'}</p><div class="game-actions"><button class="btn green" data-action="next-game">Weiteres Abenteuer →</button><button class="btn outline" data-action="back-game">Zur Lernwelt</button></div></div>`;}
+ if(s.message)return `<div class="feedback" role="status">${esc(s.message)}</div>`;
+ return '';
+}
+function answerOptions(t){return `<div class="answer-label">Tippe auf deine Antwort oder höre sie dir an</div><div class="answer-grid">${t.options.map((v,i)=>{
+  const wrong=gameState.wrong.includes(i),right=gameState.done&&i===t.answer,wordy=v.label.length>23;
+  return `<div class="answer-wrap"><button class="answer ${wordy?'wordy':''} ${right?'correct':wrong?'wrong':''}" data-answer="${i}" ${gameState.done||wrong?'disabled':''} aria-label="${esc(v.say)}"><span class="answer-art" aria-hidden="true">${esc(v.art)}</span><span class="answer-caption">${esc(v.label)}</span></button><button class="option-audio" data-audio-option="${i}" aria-label="Antwort ${i+1} vorlesen" title="Antwort vorlesen">🔊</button></div>`;
+ }).join('')}</div>`;}
+function memoryView(t){const s=gameState;
+ return `<div class="memory-counter">${s.matched.length/2} von ${t.pairs} Paaren gefunden · ${s.moves} Versuche</div><div class="memory-grid" style="${t.pairs>6?'max-width:635px':''}">${s.deck.map((v,i)=>{const flipped=s.revealed.includes(i)||s.matched.includes(i);
+  return `<button class="memory-tile ${flipped?'flipped':''} ${s.matched.includes(i)?'matched':''}" data-memory="${i}" ${s.matched.includes(i)||s.done?'disabled':''} aria-label="${flipped?esc(verbal(v.emoji)):'Verdeckte Karte '+(i+1)}"><span class="memory-front" aria-hidden="true">${flipped?esc(v.emoji):'✦'}</span></button>`;
+ }).join('')}</div>`;
+}
+function sequenceView(t){const s=gameState;return `<div class="answer-label">Der Reihe nach von klein nach groß</div><div class="sequence-slots">${t.order.map((_,i)=>`<div class="seq-slot ${s.placed[i]?'filled':''}" aria-label="Platz ${i+1}">${s.placed[i]||'?'}</div>`).join('')}</div><div class="sequence-options">${t.items.map((v,i)=>`<button class="seq-option" data-seq="${i}" ${s.used.includes(i)||s.done?'disabled':''} aria-label="Zahl ${esc(v)}">${esc(v)}</button>`).join('')}</div>`;}
+function selectView(t){const s=gameState;return `<div class="select-hint">Du kannst mehrere Bilder auswählen.</div><div class="select-grid">${t.items.map((v,i)=>`<button class="select-option ${s.selected.includes(i)?'chosen':''} ${s.wrong.includes(i)?'bad':''}" data-select="${i}" aria-pressed="${s.selected.includes(i)}" aria-label="${esc(verbal(v.say))}" ${s.done?'disabled':''}>${esc(v.art)}</button>`).join('')}</div>${s.done?'':`<div class="game-actions"><button class="btn" data-action="check-selection" ${!s.selected.length?'disabled':''}>Fertig! ✓</button></div>`}`;}
+function traceView(t){return `<div class="trace-area"><canvas id="trace-canvas" class="trace-canvas" aria-label="Hier mit Finger oder Stift die Form nachfahren">Dein Browser unterstützt die Zeichenfläche leider nicht.</canvas></div><p class="trace-caption">☝️ Male mit dem Finger, einem Stift oder der Maus. Es muss nicht perfekt sein!</p>${gameState.done?'':`<div class="trace-footer"><button class="btn outline" data-action="clear-trace">↶ Noch einmal</button><button class="btn" data-action="finish-trace" id="finish-trace" ${gameState.drawLength<30?'disabled':''}>✨ Fertig gemalt!</button></div>`}`;}
+function offlineView(t){return `<div class="offline-visual" aria-hidden="true">${esc(t.art)}</div><div class="offline-panel"><strong>🌈 Jetzt weg vom Bildschirm!</strong><p>Probier diese Idee mit einem Erwachsenen oder allein, wenn du dich damit wohlfühlst. Danach darfst du hier zurückkommen.</p></div>${gameState.done?'':`<div class="game-actions"><button class="btn green" data-action="finish-offline">🌻 Hab ich ausprobiert!</button></div>`}`;}
+function playPage(){const t=currentTask;if(!t)return worldsPage();const w=worldById(t.world),s=gameState;
+ return `<section class="game-shell"><div class="game-nav"><button class="back" data-action="back-game">← Zurück</button><span class="game-place">${w.icon} ${w.name} · ${t.level===1?'Leicht':'Knifflig'}</span></div><div class="game-card"><div class="game-header"><div class="ribbon">Momo stellt dir eine Aufgabe</div><h1>${esc(t.prompt)}</h1><button class="soundbig" data-action="read-task" aria-label="Aufgabe und Antworten anhören">🔊 Aufgabe anhören</button><div class="game-buddy" aria-hidden="true">${mascot(s.done?'happy':s.message?'cheer':'')}</div></div>${visual(t)}<div class="game-body">${t.story?`<div class="story-card"><button class="story-btn" data-action="toggle-story" aria-expanded="${s.storyOpen}">📖 Geschichte ${s.storyOpen?'verstecken':'anzeigen'} ▾</button>${s.storyOpen?`<p class="story-text">${esc(t.story)}</p>`:''}</div>`:''}${t.type==='choice'?answerOptions(t):t.type==='memory'?memoryView(t):t.type==='sequence'?sequenceView(t):t.type==='select'?selectView(t):t.type==='trace'?traceView(t):offlineView(t)}<div class="game-feedback" id="game-feedback" aria-live="polite">${feedbackHtml()}</div>${!s.done&&t.hint?`<p class="game-hint">💜 Tipp: ${esc(t.hint)}</p>`:''}</div></div></section>`;
+}
+function rewardsPage(){const cats=new Set(data.history.map(x=>x.world)),days=playedDays(),all=[
+  {icon:'🌱',name:'Erster Schritt',desc:'Ein Spiel ausprobiert',on:data.history.length>0},
+  {icon:'⭐',name:'Sternenglanz',desc:'10 Sterne gesammelt',on:stars()>=10},
+  {icon:'🗺️',name:'Weltreisender',desc:'In vier Lernwelten gespielt',on:cats.size>=4},
+  {icon:'🌈',name:'Bunte Woche',desc:'An fünf Tagen entdeckt',on:days>=5},
+  {icon:'🧩',name:'Knobelprofi',desc:'Fünf Denksachen ausprobiert',on:visits('knobel')>=5},
+  {icon:'🖍️',name:'Künstlerherz',desc:'Drei Malspiele gemacht',on:visits('stift')>=3},
+  {icon:'💚',name:'Spielplatzheld',desc:'Zwei Bewegungsideen ausprobiert',on:visits('bewegung')>=2},
+  {icon:'🏅',name:'Abenteuerfreund',desc:'30 Sterne gesammelt',on:stars()>=30},
+  {icon:'☁️',name:'Momos Freund',desc:'Alle sieben Welten entdeckt',on:cats.size===7}
+ ];
+ return `<section><div class="page-head"><div class="eyebrow">✨ Deine Sammlung</div><h1>Jeder kleine Schritt zählt</h1><p>Hier geht es ums Ausprobieren, nicht um Noten oder ums Gewinnen gegen andere.</p></div><div class="prize-hero"><span class="big-prize">🏆</span><div><h2>${stars()} Stern${stars()===1?'':'e'} gesammelt</h2><p>${days} Tag${days===1?'':'e'} voller neugieriger Entdeckungen. Weiter so!</p></div></div>${sectionHead('Deine Abzeichen','Jedes Abzeichen erinnert dich an etwas Schönes.')}<div class="achievements">${all.map(b=>`<div class="badge-card ${b.on?'':'locked'}"><span class="badge-icon">${b.icon}</span><strong>${b.name}</strong><p>${b.on?'Freigeschaltet!':'Noch zu entdecken'} · ${b.desc}</p></div>`).join('')}</div></section>`;
+}
+function parentsPage(){const most=Math.max(1,...WORLDS.map(w=>visits(w.id)));return `<section><div class="page-head"><div class="eyebrow">👨‍👩‍👧 Bereich für Erwachsene</div><h1>Gemeinsam wachsen 💜</h1><p>Hier siehst du, welche Lernwelten dein Kind ausprobiert hat. Die Häufigkeit ist <strong>keine</strong> Aussage über Schulreife oder Begabung.</p></div><div class="stats"><div class="stat"><strong>${stars()}</strong><small>Gesammelte Sterne</small></div><div class="stat"><strong>${data.history.length}</strong><small>Abgeschlossene Übungen</small></div><div class="stat"><strong>${playedDays()}</strong><small>Spieltage</small></div></div>${sectionHead('Entdeckte Lernwelten','Keine Bewertungen, keine Vergleiche.')}<div class="parent-grid"><div class="panel"><h2>Spielübersicht</h2><p>Die Balken zeigen ausschließlich, wie häufig eine Welt besucht wurde.</p><div class="activity-meter">${WORLDS.map(w=>`<div class="meter-row"><span>${w.icon} ${w.name}<small>${visits(w.id)} Spiele</small></span><div class="meter-track"><div style="width:${visits(w.id)/most*100}%;background:${w.accent}"></div></div></div>`).join('')}</div></div><div class="panel"><h2>Kind & Einstellungen</h2><label class="field-label" for="kid-name">Vorname oder Spitzname (optional)</label><input class="field" id="kid-name" maxlength="22" type="text" autocomplete="off" placeholder="Wie soll Momo dich nennen?" value="${esc(data.name)}"/><label class="field-label">Lieblingssymbol</label><div class="avatar-row">${['☁️','🦊','🐰','🐼','🦄','🐬'].map(a=>`<button class="avatar-choice ${data.avatar===a?'selected':''}" data-avatar="${a}" aria-label="Symbol ${a}" aria-pressed="${data.avatar===a}">${a}</button>`).join('')}</div><button class="btn small" data-action="save-profile">💜 Profil speichern</button><div class="privacy"><strong>🔒 Kindgerecht und privat</strong><br>Alle Einträge bleiben ausschließlich in diesem Browser auf diesem Gerät. Keine Anmeldung, Werbung, Analyse, Cloud oder Datenweitergabe. Das Browser-Sprachsystem kann von Gerät und Betriebssystem abhängen; dafür wird von dieser App selbst kein Audio an einen eigenen Server geschickt.</div><button class="danger" data-action="reset">🗑️ Lernfortschritt zurücksetzen …</button></div></div><div class="parent-tip"><h3>🌻 Das Üben im Alltag ist genauso wichtig</h3><p>Gemeinsam vorlesen, draußen balancieren, Mengen beim Tischdecken zählen, neue Wörter entdecken und über Gefühle sprechen sind wertvolle Ergänzungen. Kinder entwickeln sich unterschiedlich. Bei Fragen zur Entwicklung helfen Kita, Schule oder pädagogische Fachkräfte weiter.</p></div></section>`;}
+function render(){const pages={home,worlds:worldsPage,world:worldPage,play:playPage,rewards:rewardsPage,parents:parentsPage};$('#app').innerHTML=shell((pages[screen]||home)());
+ if(screen==='play'&&currentTask?.type==='trace'&&!gameState.done)requestAnimationFrame(initDrawing);
+}
+function notify(msg){const root=$('#toast');if(!root)return;root.innerHTML=`<div class="toast-msg">${esc(msg)}</div>`;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{root.innerHTML='';},2800);}
+function clearTransient(){if(memoTimer){clearTimeout(memoTimer);memoTimer=null;}try{window.speechSynthesis?.cancel();}catch{}document.documentElement.classList.remove('momo-talking');gameState=null;currentTask=null;}
+function changePage(page){clearTransient();screen=page;chosenTopic='Alle';render();window.scrollTo({top:0,behavior:'instant'});}
+function goWorld(id){if(!worldById(id))return;clearTransient();screen='world';chosenWorld=id;chosenTopic='Alle';render();window.scrollTo({top:0,behavior:'instant'});}
+function shuffle(arr,salt){const a=[...arr];let seed=hash(salt)||1;for(let i=a.length-1;i>0;i--){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const j=seed%(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
+function makeDeck(pairCount,id){const pool=['🐳','🍉','🌈','🚀','🦊','🌻','🐠','🦋'];const pairs=pool.slice(0,pairCount).flatMap((e,i)=>[{emoji:e,key:i},{emoji:e,key:i}]);return shuffle(pairs,today()+id+String(data.history.length));}
+function startTask(id){const t=TASK_BY_ID[id];if(!t)return;const came=screen==='play'?origin:screen;clearTransient();origin=came;screen='play';chosenWorld=t.world;currentTask=t;
+ gameState={done:false,earned:false,tries:0,wrong:[],message:'',storyOpen:false,selected:[],used:[],placed:[],drawPoints:[],drawLength:0,
+  revealed:[],matched:[],busy:false,moves:0,...(t.type==='memory'?{deck:makeDeck(t.pairs,t.id)}:{})};
+ render();window.scrollTo({top:0,behavior:'instant'});
+ if(data.voice)announceTask(t);
+}
+function backGame(){const world=currentTask?.world;if(origin==='home')changePage('home');else if(origin==='world')goWorld(world);else changePage('worlds');}
+function nextGame(){const t=currentTask;const same=worldTasks(t.world).filter(x=>x.id!==t.id);const unseen=same.filter(x=>!done(x.id));const pool=unseen.length?unseen:same;const index=hash(t.id+today()+String(data.history.length))%pool.length;startTask(pool[index].id);}
+// A tiny, local success melody (no sound files or network), controlled by 🔊/🔇.
+function playJingle(){
+ if(!data.voice)return;
+ try{
+  const Context=window.AudioContext||window.webkitAudioContext;
+  if(!Context)return;
+  const audio=new Context();
+  [523.25,659.25,783.99].forEach((hz,i)=>{
+   const oscillator=audio.createOscillator(),gain=audio.createGain();
+   oscillator.type='sine';oscillator.frequency.value=hz;
+   oscillator.connect(gain);gain.connect(audio.destination);
+   const start=audio.currentTime+i*.115;
+   gain.gain.setValueAtTime(.0001,start);
+   gain.gain.exponentialRampToValueAtTime(.028,start+.025);
+   gain.gain.exponentialRampToValueAtTime(.0001,start+.27);
+   oscillator.start(start);oscillator.stop(start+.28);
+  });
+  setTimeout(()=>audio.close().catch(()=>{}),1100);
+ }catch{/* Optional sound enhancement; learning remains usable without Web Audio. */}
+}
+function award(){if(!currentTask||gameState.done)return;
+ gameState.done=true;
+ if(done(currentTask.id)){gameState.earned=false;}
+ else{gameState.earned=true;data.history.push({date:today(),id:currentTask.id,world:currentTask.world,tries:Math.max(1,gameState.tries),ts:new Date().toISOString()});if(data.history.length>3000)data.history=data.history.slice(-3000);persist();}
+ render();celebrate();playJingle();if(data.voice)speak('Juhu! Toll gemacht, weiter so!');
+}
+function celebrate(){if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)return;const stage=$('#confetti');stage.textContent='';const colors=['#f7ac91','#d1abfd','#9dd8ff','#ffd575','#9ee3ac'];for(let i=0;i<25;i++){const p=document.createElement('span');p.className='confetti-piece';p.style.left=(5+(i*41%91))+'%';p.style.background=colors[i%colors.length];p.style.animationDelay=((i*13%43)/100)+'s';p.style.setProperty('--drift',((i*79%180)-90)+'px');p.style.setProperty('--rot',(i*37)+'deg');stage.append(p);}setTimeout(()=>stage.textContent='',2500);}
+function answer(i){const t=currentTask,s=gameState;if(!t||t.type!=='choice'||!s||s.done||s.wrong.includes(i))return;
+ s.tries++;
+ if(i===t.answer){award();return;}
+ s.wrong.push(i);s.message=t.hint?`Fast! ${t.hint}`:'Probier es noch einmal. Momo hilft dir! 💜';
+ render();if(data.voice)speak('Fast! Probier es noch einmal.');
+}
+function flip(i){const s=gameState;if(!s||!currentTask||s.done||s.busy||s.matched.includes(i)||s.revealed.includes(i))return;
+ s.revealed.push(i);if(s.revealed.length===2){s.moves++;s.tries++;const [a,b]=s.revealed;
+  if(s.deck[a].key===s.deck[b].key){s.matched.push(a,b);s.revealed=[];if(s.matched.length===s.deck.length){award();return;}}
+  else {s.busy=true;const stable=s;memoTimer=setTimeout(()=>{if(gameState!==stable)return;stable.revealed=[];stable.busy=false;memoTimer=null;render();},950);}
+ }
+ render();
+}
+function sequencePick(i){const s=gameState,t=currentTask;if(!s||t?.type!=='sequence'||s.done||s.used.includes(i))return;
+ s.tries++;const val=t.items[i];if(val===t.order[s.placed.length]){s.placed.push(val);s.used.push(i);s.message='';if(s.placed.length===t.order.length){award();return;}render();}
+ else{s.message='Schau noch einmal: Welche Zahl kommt jetzt?';render();if(data.voice)speak('Welche Zahl kommt jetzt?');}
+}
+function toggleSelection(i){const s=gameState,t=currentTask;if(!s||t?.type!=='select'||s.done)return;
+ s.selected=s.selected.includes(i)?s.selected.filter(v=>v!==i):[...s.selected,i];s.wrong=[];s.message='';render();
+}
+function checkSelection(){const s=gameState,t=currentTask;if(!s||t?.type!=='select'||s.done)return;const correct=t.items.map((x,i)=>t.selected.includes(x.label)?i:-1).filter(x=>x!==-1),chosen=s.selected;
+ s.tries++;if(chosen.length===correct.length&&chosen.every(i=>correct.includes(i))){award();return;}
+ s.wrong=chosen.filter(i=>!correct.includes(i));s.message='Schau noch mal genau hin. Vielleicht fehlt ein Bild oder eines passt nicht.';render();if(data.voice)speak('Schau noch einmal genau hin.');
+}
+function initDrawing(){if(currentTask?.type!=='trace'||gameState?.done)return;
+ const canvas=$('#trace-canvas');if(!canvas)return;const css=canvas.getBoundingClientRect();if(!css.width||!css.height)return;
+ const scale=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(css.width*scale);canvas.height=Math.round(css.height*scale);
+ const ctx=canvas.getContext('2d');if(!ctx)return;ctx.setTransform(scale,0,0,scale,0,0);
+ const w=css.width,h=css.height;ctx.clearRect(0,0,w,h);ctx.fillStyle='#fcfaff';ctx.fillRect(0,0,w,h);
+ ctx.save();ctx.strokeStyle='#cbbbea';ctx.lineWidth=11;ctx.lineJoin='round';ctx.lineCap='round';ctx.setLineDash([2,18]);
+ const p=(x,y)=>[w*x/600,h*y/320];const move=(x,y)=>ctx.moveTo(...p(x,y));const line=(x,y)=>ctx.lineTo(...p(x,y));
+ const bez=(a,b,c,d,e,f)=>{const b1=p(a,b),b2=p(c,d),end=p(e,f);ctx.bezierCurveTo(...b1,...b2,...end);};
+ const sh=currentTask.trace;
+ if(/^[A-Z0-9]$/.test(sh)){ctx.font=`900 ${Math.min(w*.55,h*.83)}px Trebuchet MS, sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineWidth=9;ctx.strokeText(sh,w/2,h*.55);}
+ else{
+  ctx.beginPath();switch(sh){
+   case 'welle':move(45,155);bez(95,35,155,35,205,155);bez(255,275,315,275,365,155);bez(410,35,495,35,555,155);break;
+   case 'zickzack':move(45,245);line(140,60);line(235,245);line(335,60);line(435,245);line(555,60);break;
+   case 'kreis':ctx.ellipse(w*.5,h*.5,w*.3,h*.38,0,0,Math.PI*2);break;
+   case 'spirale':{const cx=w/2,cy=h/2;for(let k=0;k<=95;k++){const a=k*.115,r=k*Math.min(w,h)*.0031;const x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;k===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}break;}
+   case 'schleife':move(70,200);bez(150,15,275,45,300,160);bez(340,310,490,290,535,145);bez(555,50,435,15,300,160);bez(165,280,85,250,70,200);break;
+   case 'linie':move(45,170);line(550,170);break;
+   case 'quadrat':move(185,55);line(425,55);line(425,265);line(185,265);ctx.closePath();break;
+   case 'dreieck':move(300,40);line(505,265);line(95,265);ctx.closePath();break;
+   default:move(55,160);line(545,160);
+  }ctx.stroke();
+ }
+ ctx.restore();
+ const redrawStrokes=()=>{ctx.save();ctx.strokeStyle='#8b67d6';ctx.lineWidth=7;ctx.lineJoin='round';ctx.lineCap='round';ctx.setLineDash([]);for(const points of gameState.drawPoints){if(!points.length)continue;ctx.beginPath();ctx.moveTo(points[0][0]*w,points[0][1]*h);points.forEach(pt=>ctx.lineTo(pt[0]*w,pt[1]*h));ctx.stroke();}ctx.restore();};
+ redrawStrokes();
+ let drawing=false;const coords=e=>{const box=canvas.getBoundingClientRect();return [limit((e.clientX-box.left)/box.width,0,1),limit((e.clientY-box.top)/box.height,0,1)];};
+ canvas.onpointerdown=e=>{if(gameState.done)return;e.preventDefault();drawing=true;canvas.setPointerCapture(e.pointerId);gameState.drawPoints.push([coords(e)]);};
+ canvas.onpointermove=e=>{if(!drawing||gameState.done)return;e.preventDefault();const list=gameState.drawPoints.at(-1),point=coords(e),last=list.at(-1);if(!last)return;
+  const length=Math.hypot((point[0]-last[0])*w,(point[1]-last[1])*h);if(length<1)return;
+  gameState.drawLength+=length;list.push(point);redrawStrokes();const button=$('#finish-trace');if(button)button.disabled=gameState.drawLength<30;
+ };
+ canvas.onpointerup=e=>{drawing=false;try{canvas.releasePointerCapture(e.pointerId)}catch{}};
+ canvas.onpointercancel=()=>{drawing=false;};
+}
+function resetTrace(){if(!gameState||gameState.done)return;gameState.drawPoints=[];gameState.drawLength=0;initDrawing();}
+function currentAudioOption(index){const t=currentTask;if(!t||t.type!=='choice')return;const v=t.options[index];if(v)speak(`Antwort ${index+1}. ${verbal(v.say)}.`,{force:true});}
+function closeModal(){const m=$('#confirm-modal');if(m)m.remove();activeModal=false;if(pendingFocus&&typeof pendingFocus.focus==='function')pendingFocus.focus();pendingFocus=null;}
+function confirmReset(){if(activeModal)return;activeModal=true;pendingFocus=document.activeElement;const div=document.createElement('div');div.id='confirm-modal';div.className='modal-shade';div.innerHTML=`<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-desc"><h2 id="dialog-title">Fortschritt zurücksetzen?</h2><p id="dialog-desc">Alle Sterne, erledigten Übungen und Tagesmissionen auf diesem Gerät werden gelöscht. Spitzname, Figur und Vorlesen bleiben erhalten.</p><div class="buttons"><button class="btn outline small" data-action="close-modal">Abbrechen</button><button class="danger" data-action="reset-confirm">Ja, löschen</button></div></div>`;document.body.append(div);div.querySelector('button').focus();}
+function handleAction(action){switch(action){
+ case 'next-mission':{const next=dailyMissions().find(id=>!done(id));if(next)startTask(next);else changePage('worlds');break;}
+ case 'speak-home':speak(`Hallo ${data.name||'du'}! Ich bin Momo. Schön, dass du da bist. Komm, wir starten ein buntes Lernabenteuer.`,{force:true});break;
+ case 'toggle-voice':data.voice=!data.voice;persist();if(!data.voice){try{window.speechSynthesis?.cancel()}catch{}document.documentElement.classList.remove('momo-talking');}render();notify(data.voice?'Ton und automatisches Vorlesen eingeschaltet':'Ton und automatisches Vorlesen ausgeschaltet');break;
+ case 'read-task':announceTask();break;
+ case 'toggle-story':if(gameState){gameState.storyOpen=!gameState.storyOpen;render();}break;
+ case 'back-game':backGame();break;
+ case 'next-game':nextGame();break;
+ case 'clear-trace':resetTrace();break;
+ case 'finish-trace':if(gameState?.drawLength>=30){gameState.tries=1;award();}break;
+ case 'finish-offline':if(gameState&&!gameState.done){gameState.tries=1;award();}break;
+ case 'check-selection':checkSelection();break;
+ case 'save-profile':{const e=$('#kid-name');data.name=(e?.value||'').trim().slice(0,22);persist();render();notify('Gespeichert! 💜');break;}
+ case 'reset':confirmReset();break;
+ case 'close-modal':closeModal();break;
+ case 'reset-confirm':{const copy={name:data.name,avatar:data.avatar,voice:data.voice};data={...defaults(),...copy};persist();closeModal();render();notify('Lernfortschritt zurückgesetzt.');break;}
+ }}
+document.addEventListener('click',e=>{
+ const btn=e.target.closest('button');if(!btn)return;
+ if(btn.dataset.page){changePage(btn.dataset.page);return;}
+ if(btn.dataset.world){goWorld(btn.dataset.world);return;}
+ if(btn.dataset.task){startTask(btn.dataset.task);return;}
+ if(btn.dataset.topic){chosenTopic=btn.dataset.topic;render();return;}
+ if(btn.dataset.answer!==undefined){answer(Number(btn.dataset.answer));return;}
+ if(btn.dataset.audioOption!==undefined){currentAudioOption(Number(btn.dataset.audioOption));return;}
+ if(btn.dataset.memory!==undefined){flip(Number(btn.dataset.memory));return;}
+ if(btn.dataset.seq!==undefined){sequencePick(Number(btn.dataset.seq));return;}
+ if(btn.dataset.select!==undefined){toggleSelection(Number(btn.dataset.select));return;}
+ if(btn.dataset.avatar){data.avatar=btn.dataset.avatar;document.querySelectorAll('[data-avatar]').forEach(el=>{const selected=el.dataset.avatar===data.avatar;el.classList.toggle('selected',selected);el.setAttribute('aria-pressed',String(selected));});return;}
+ if(btn.dataset.action)handleAction(btn.dataset.action);
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&activeModal)closeModal();});
+if('serviceWorker'in navigator&&['https:','http:'].includes(location.protocol)){
+ window.addEventListener('load',()=>{navigator.serviceWorker.register('./service-worker.js').catch(()=>{});});
+}
+render();
+
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
